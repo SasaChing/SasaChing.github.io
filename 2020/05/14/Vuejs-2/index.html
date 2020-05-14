@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/SasaChing.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/SasaChing.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/SasaChing.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/SasaChing.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/SasaChing.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/SasaChing.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/SasaChing.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue.js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基礎模板語法 再次複習模板語法，更添加了不同的表達式以及更詳細的語法練習，這次幾乎為課程上的範例，但還是有消化過的筆記，若有更多補充會再更新。  123456789101112131415161718192021222324252627282930313233343536373839&lt;div id&#x3D;&quot;app&quot;&gt;  &lt;h4&gt;字串&lt;&#x2F;h4&gt;  &amp;#123;&amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue.js 筆記 (二) 模板指令]">
+<meta property="og:url" content="https://sasaching.github.io/2020/05/14/Vuejs-2/index.html">
+<meta property="og:site_name" content="Sabrina&#39;s Blog">
+<meta property="og:description" content="基礎模板語法 再次複習模板語法，更添加了不同的表達式以及更詳細的語法練習，這次幾乎為課程上的範例，但還是有消化過的筆記，若有更多補充會再更新。  123456789101112131415161718192021222324252627282930313233343536373839&lt;div id&#x3D;&quot;app&quot;&gt;  &lt;h4&gt;字串&lt;&#x2F;h4&gt;  &amp;#123;&amp;#123">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/JYWRZ0n.jpg">
+<meta property="og:image" content="https://i.imgur.com/wb4DD1g.jpg">
+<meta property="og:image" content="https://i.imgur.com/pOAfeYS.jpg">
+<meta property="og:image" content="https://i.imgur.com/zlqng3R.jpg">
+<meta property="og:image" content="https://i.imgur.com/kcrgIrL.jpg">
+<meta property="og:image" content="https://i.imgur.com/LAPaQK4.jpg">
+<meta property="og:image" content="https://i.imgur.com/EPjnYsX.jpg">
+<meta property="og:image" content="https://i.imgur.com/YuNsGiS.jpg">
+<meta property="og:image" content="https://i.imgur.com/MGYgzuo.jpg">
+<meta property="og:image" content="https://i.imgur.com/mZfUPPn.jpg">
+<meta property="og:image" content="https://i.imgur.com/We5ztUS.jpg">
+<meta property="og:image" content="https://i.imgur.com/pHuC9uP.jpg">
+<meta property="og:image" content="https://i.imgur.com/7qH1r7X.jpg">
+<meta property="og:image" content="https://i.imgur.com/PowNlq0.jpg">
+<meta property="og:image" content="https://i.imgur.com/blBjqqQ.jpg">
+<meta property="article:published_time" content="2020-05-14T15:28:56.154Z">
+<meta property="article:modified_time" content="2020-05-14T15:42:14.466Z">
+<meta property="article:author" content="Sabrina">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/JYWRZ0n.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/SasaChing.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://SasaChing.github.io/2020/05/14/Vuejs-2/"/>
+
+
+
+
+
+  <title>[Vue.js 筆記 (二) 模板指令] | Sabrina's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/SasaChing.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sabrina's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Code notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/SasaChing.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/SasaChing.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/SasaChing.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/SasaChing.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/SasaChing.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://SasaChing.github.io/SasaChing.github.io/2020/05/14/Vuejs-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sabrina">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/SasaChing.github.io/images/%E5%80%8B%E4%BA%BA%E7%85%A7%E7%89%87.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sabrina's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Vue.js 筆記 (二) 模板指令]</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-05-14T23:28:56+08:00">
+                2020-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/SasaChing.github.io/categories/Vue-js%E7%AD%86%E8%A8%98/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue.js筆記</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/SasaChing.github.io/2020/05/14/Vuejs-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/05/14/Vuejs-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基礎模板語法"><a href="#基礎模板語法" class="headerlink" title="基礎模板語法"></a>基礎模板語法</h1><ul>
+<li>再次複習模板語法，更添加了不同的表達式以及更詳細的語法練習，這次幾乎為課程上的範例，但還是有消化過的筆記，若有更多補充會再更新。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;h4&gt;字串&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">  &#123;&#123; text &#125;&#125;</span></span><br><span class="line"><span class="regexp">  &lt;input type="text" class="form-control" v-model="text"&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  &lt;h4 class="mt-3"&gt;原始 HTML&lt;/</span>h4&gt;</span><br><span class="line">  &#123;&#123; rawHtml &#125;&#125;</span><br><span class="line">  &lt;p v-html=<span class="string">"rawHtml"</span>&gt;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  &lt;h4 class="mt-3"&gt; v-once 單次綁定&lt;/</span>h4&gt;</span><br><span class="line">  &lt;div v-text=<span class="string">"text"</span> v-once&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  &lt;h4 class="mt-3"&gt;不同的表達式&lt;/</span>h4&gt;</span><br><span class="line">  &#123;&#123; text + rawHtml &#125;&#125;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &#123;&#123; text.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &#123;&#123; number1 + number2 &#125;&#125;</span><br><span class="line"></span><br><span class="line">  &lt;hr&gt;</span><br><span class="line">  &lt;h4 <span class="class"><span class="keyword">class</span></span>=<span class="string">"mt-3"</span>&gt;HTML 屬性&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">  &lt;p :id="htmlId"&gt;綁定上 ID&lt;/</span>p&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> :disabled=<span class="string">"isDisabled"</span> placeholder=<span class="string">"加上動態 disabled"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    text: '這是一段文字',</span></span><br><span class="line"><span class="regexp">    rawHtml: `&lt;span class="text-danger"&gt;紅色文字&lt;/</span>span&gt;<span class="string">`,</span></span><br><span class="line"><span class="string">    number1: 100,</span></span><br><span class="line"><span class="string">    number2: 300,</span></span><br><span class="line"><span class="string">    htmlId: 'HTMLID',</span></span><br><span class="line"><span class="string">    isDisabled: true</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/JYWRZ0n.jpg" alt=""></p>
+<blockquote>
+<p>使用<code>v-html</code>容易導致 XSS 攻擊，必須是安全可信用的內容上使用，並且絕不使用在從用戶端傳送提交資料的內容上。</p>
+</blockquote>
+<h1 id="Class-切換樣式"><a href="#Class-切換樣式" class="headerlink" title="Class 切換樣式"></a>Class 切換樣式</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 物件寫法一 ：（可編寫多個）class="&#123; 'Class名稱' : 判斷式 , 'Class名稱' : 判斷式 &#125;"</span></span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; 'rotate' : isTransform , 'bg-danger' : boxColor &#125;"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button class="btn btn-outline-primary" @click="isTransform = !isTransform"&gt;選轉物件&lt;/</span>button&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"checkbox"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-input"</span> id=<span class="string">"classToggle1"</span> v-model=<span class="string">"boxColor"</span>&gt;</span><br><span class="line">    &lt;label <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-label"</span> <span class="keyword">for</span>=<span class="string">"classToggle1"</span>&gt;切換色彩&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 物件寫法二 ： 引用 data 裡的物件</span></span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"objectClass"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button class="btn btn-outline-primary" @click="objectClass.rotate = !objectClass.rotate"&gt;選轉物件&lt;/</span>button&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"checkbox"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-input"</span> id=<span class="string">"classToggle2"</span> v-model=<span class="string">"objectClass['bg-danger']"</span>&gt;</span><br><span class="line">    <span class="comment">// 因為有 “ - ” 所以必須寫成 ['bg-danger'] 才不會出錯</span></span><br><span class="line">    </span><br><span class="line">    &lt;label <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-label"</span> <span class="keyword">for</span>=<span class="string">"classToggle2"</span>&gt;切換色彩&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 陣列寫法 ： 先引用一個空陣列，再雙向綁定資料後，value再填寫Class名稱</span></span><br><span class="line">  <span class="comment">// 主要可以用在class名稱不知道數量時</span></span><br><span class="line">  &lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"arrayClass"</span> &gt;&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="form-check"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="checkbox" class="form-check-input" id="classToggle3" v-model="arrayClass" value="btn-outline-primary"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;label class="form-check-label" for="classToggle3"&gt;切換樣式&lt;/</span>label&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="form-check"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="checkbox" class="form-check-input" id="classToggle4" v-model="arrayClass" value="active"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;label class="form-check-label" for="classToggle4"&gt;啟用元素狀態&lt;/</span>label&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ 綁定行內樣式</span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ 不同方式綁定以下行內樣式</span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ background-color 必須寫成 backgroundColor</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  &lt;div class="box" :style="&#123;backgroundColor : 'red' &#125;"&gt;&lt;/</span>div&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> :style=<span class="string">"styleObject"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="box" :style="[&#123;backgroundColor : 'red' &#125;,&#123;borderWidth : '10px' &#125;]"&gt;&lt;/</span>div&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> :style=<span class="string">"[ styleObject ,styleObject2 ]"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ 自動加上 Prefix(每個版本結果不同)</span></span><br><span class="line"><span class="regexp">  &lt;div class="box" :style="styleObject3"&gt;&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    isTransform: false,</span></span><br><span class="line"><span class="regexp">    boxColor: false,</span></span><br><span class="line"><span class="regexp">    objectClass: &#123;</span></span><br><span class="line"><span class="regexp">      'rotate': false,</span></span><br><span class="line"><span class="regexp">      'bg-danger': false,</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ Array 操作</span></span><br><span class="line"><span class="regexp">    arrayClass: [],</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 行內樣式</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 使用駝峰式命名</span></span><br><span class="line"><span class="regexp">    styleObject: &#123;</span></span><br><span class="line"><span class="regexp">      backgroundColor: 'red',</span></span><br><span class="line"><span class="regexp">      borderWidth: '5px'</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    styleObject2: &#123;</span></span><br><span class="line"><span class="regexp">      boxShadow: '3px 3px 5px rgba(0, 0, 0, 0.16)'</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    styleObject3: &#123;</span></span><br><span class="line"><span class="regexp">      userSelect: 'none'</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.box &#123;</span><br><span class="line">  transition: all <span class="number">.5</span>s;</span><br><span class="line">&#125;</span><br><span class="line">.box.rotate &#123;</span><br><span class="line">  transform: rotate(<span class="number">45</span>deg)</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="v-if-模板判斷"><a href="#v-if-模板判斷" class="headerlink" title="v-if 模板判斷"></a>v-if 模板判斷</h1><h2 id="v-if-v-else"><a href="#v-if-v-else" class="headerlink" title="v-if, v-else"></a>v-if, v-else</h2><ul>
+<li>在鄰近的位置可以改成<code>v-else</code> 切換呈現</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"alert alert-success"</span> v-<span class="keyword">if</span>=<span class="string">"isSuccess"</span>&gt;成功!&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="alert alert-danger" v-else&gt;失敗!&lt;/</span>div&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"checkbox"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-input"</span> id=<span class="string">"isSuccess"</span> v-model=<span class="string">"isSuccess"</span>&gt;</span><br><span class="line">    &lt;label <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-label"</span> <span class="keyword">for</span>=<span class="string">"isSuccess"</span>&gt;啟用&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  &lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    isSuccess: true,</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/wb4DD1g.jpg" alt=""><br><img src="https://i.imgur.com/pOAfeYS.jpg" alt=""></p>
+<h2 id="template-標籤"><a href="#template-標籤" class="headerlink" title="template 標籤"></a>template 標籤</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;table <span class="class"><span class="keyword">class</span></span>=<span class="string">"table"</span>&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">      &lt;th&gt;座號&lt;<span class="regexp">/th&gt;</span></span><br><span class="line"><span class="regexp">      &lt;th&gt;姓名&lt;/</span>th&gt;</span><br><span class="line">    &lt;<span class="regexp">/thead&gt;</span></span><br><span class="line"><span class="regexp">  &lt;template v-if="showTemplate"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;tr&gt;</span></span><br><span class="line"><span class="regexp">      &lt;td&gt;33&lt;/</span>td&gt;</span><br><span class="line">      &lt;td&gt;妮妮&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>tr&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">      &lt;td&gt;<span class="number">22</span>&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">      &lt;td&gt;阿呆&lt;/</span>td&gt;</span><br><span class="line">    &lt;<span class="regexp">/tr&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>template&gt;</span><br><span class="line">  &lt;<span class="regexp">/table&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="form-check"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input type="checkbox" class="form-check-input" id="showTemplate" v-model="showTemplate"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;label class="form-check-label" for="showTemplate"&gt;啟用&lt;/</span>label&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    showTemplate: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/zlqng3R.jpg" alt=""><br><img src="https://i.imgur.com/kcrgIrL.jpg" alt=""></p>
+<h2 id="v-else-if-分頁頁籤"><a href="#v-else-if-分頁頁籤" class="headerlink" title="v-else-if 分頁頁籤"></a>v-else-if 分頁頁籤</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav nav-tabs"</span>&gt;</span><br><span class="line">    &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-item"</span>&gt;</span><br><span class="line">      &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-link"</span> href=<span class="string">"#"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'active' : link == 'a'&#125;"</span> @click.prevent=<span class="string">"link = 'a'"</span>&gt;標題一&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>li&gt;</span><br><span class="line">    &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-item"</span>&gt;</span><br><span class="line">      &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-link"</span> href=<span class="string">"#"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'active' : link == 'b'&#125;"</span> @click.prevent=<span class="string">"link = 'b'"</span>&gt;標題二&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>li&gt;</span><br><span class="line">    &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-item"</span>&gt;</span><br><span class="line">      &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-link"</span> href=<span class="string">"#"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'active' : link == 'c'&#125;"</span> @click.prevent=<span class="string">"link = 'c'"</span>&gt;標題三&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>li&gt;</span><br><span class="line">  &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="content"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div v-if="link == 'a'"&gt;Ａ&lt;/</span>div&gt;</span><br><span class="line">    &lt;div v-<span class="keyword">else</span>-<span class="keyword">if</span>=<span class="string">"link == 'b'"</span>&gt;Ｂ&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div v-else-if="link == 'c'"&gt;Ｃ&lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    link: <span class="string">'a'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/LAPaQK4.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/EPjnYsX.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/YuNsGiS.jpg" alt=""></p>
+<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><ul>
+<li>讓內容重新渲染</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;template v-<span class="keyword">if</span>=<span class="string">"loginType === 'username'"</span>&gt;</span><br><span class="line">    &lt;label&gt;Username&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input class="form-control" placeholder="Enter your username" :key="1"&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>template&gt;</span><br><span class="line">  &lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">    &lt;label&gt;Email&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input class="form-control" placeholder="Enter your email address" :key="2"&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>template&gt;</span><br><span class="line">  &lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-outline-primary mt-3"</span> @click=<span class="string">"toggleLoginType"</span>&gt;切換狀態&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    loginType: <span class="string">'username'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    toggleLoginType: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.loginType = <span class="keyword">this</span>.loginType === <span class="string">'username'</span> ? <span class="string">'email'</span> : <span class="string">'username'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/MGYgzuo.jpg" alt=""><br><img src="https://i.imgur.com/mZfUPPn.jpg" alt=""></p>
+<h2 id="v-if-與-v-show"><a href="#v-if-與-v-show" class="headerlink" title="v-if 與 v-show"></a>v-if 與 v-show</h2><blockquote>
+<p>呈現出來的效果一致，但是實際過程不相同</p>
+</blockquote>
+<ul>
+<li><code>v-if</code> 只會呈現一項，另一項則會消失。</li>
+<li><code>v-show</code> 以 <code>display:none</code> 來做切換。</li>
+</ul>
+<h1 id="v-for-迴圈"><a href="#v-for-迴圈" class="headerlink" title="v-for 迴圈"></a>v-for 迴圈</h1><h2 id="過濾資料"><a href="#過濾資料" class="headerlink" title="過濾資料"></a>過濾資料</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model=<span class="string">"filterText"</span> @keyup.enter=<span class="string">"filterData"</span>&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">"(item, key) in filterArray"</span> :key=<span class="string">"item.age"</span>&gt;</span><br><span class="line">      &#123;&#123; key &#125;&#125; - &#123;&#123; item.name &#125;&#125; &#123;&#123; item.age &#125;&#125; 歲 &lt;input type=<span class="string">"text"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/u</span>l&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    arrayData: [</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '小明',</span></span><br><span class="line"><span class="regexp">        age: 16</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '漂亮阿姨',</span></span><br><span class="line"><span class="regexp">        age: 24</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '杰倫',</span></span><br><span class="line"><span class="regexp">        age: 20</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    ],</span></span><br><span class="line"><span class="regexp">    objectData: &#123;</span></span><br><span class="line"><span class="regexp">      ming: &#123;</span></span><br><span class="line"><span class="regexp">        name: '小明',</span></span><br><span class="line"><span class="regexp">        age: 16</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      auntie: &#123;</span></span><br><span class="line"><span class="regexp">        name: '漂亮阿姨',</span></span><br><span class="line"><span class="regexp">        age: 24</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      jay: &#123;</span></span><br><span class="line"><span class="regexp">        name: '杰倫',</span></span><br><span class="line"><span class="regexp">        age: 20</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    filterArray: [],</span></span><br><span class="line"><span class="regexp">    filterText: ''</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    filterData: function() &#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ this 會被替換掉，所以儲存在 vm 裡</span></span><br><span class="line"><span class="regexp">      var vm = this; </span></span><br><span class="line"><span class="regexp">      vm.filterArray =vm.arrayData.filter(function(item)&#123;</span></span><br><span class="line"><span class="regexp">        console.log(vm.filterText, item.name, item.name.match(vm.filterText));</span></span><br><span class="line"><span class="regexp">        return item.name.match(vm.filterText);</span></span><br><span class="line"><span class="regexp">      &#125;)</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/We5ztUS.jpg" alt=""><br><img src="https://i.imgur.com/pHuC9uP.jpg" alt=""></p>
+<h2 id="不能運作的錯誤狀況"><a href="#不能運作的錯誤狀況" class="headerlink" title="不能運作的錯誤狀況"></a>不能運作的錯誤狀況</h2><ul>
+<li>不能直接修改陣列長度</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">錯誤範例一</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.arrayData.length = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不能以陣列索引直接修改陣列內容</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">錯誤範例二</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.arrayData[<span class="number">0</span>] = &#123;</span><br><span class="line">  name: <span class="string">'阿強'</span>,</span><br><span class="line">  age: <span class="number">99</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>要強制修改陣列內容的話，必須使用set()</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">//（指向,索引,&#123;修改內容&#125;)</span></span><br><span class="line">Vue.set(<span class="keyword">this</span>.arrayData, <span class="number">0</span>, &#123;</span><br><span class="line">  name: <span class="string">'阿強'</span>,</span><br><span class="line">  age: <span class="number">99</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="純數字迴圈"><a href="#純數字迴圈" class="headerlink" title="純數字迴圈"></a>純數字迴圈</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">"item in 5"</span>&gt;</span><br><span class="line">      &#123;&#123; item &#125;&#125;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/u</span>l&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/7qH1r7X.jpg" alt=""></p>
+<h2 id="template-的運用"><a href="#template-的運用" class="headerlink" title="template 的運用"></a>template 的運用</h2><blockquote>
+<p>加入<code>template</code>標籤是不會呈現在渲染上去的，所以可以用來增加指令</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;table <span class="class"><span class="keyword">class</span></span>=<span class="string">"table"</span>&gt;</span><br><span class="line">    &lt;template v-<span class="keyword">for</span>=<span class="string">"item in arrayData"</span>&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; item.age &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>tr&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;&#123;&#123; item.name &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>tr&gt;</span><br><span class="line">    &lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>table&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    arrayData: [</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '小明',</span></span><br><span class="line"><span class="regexp">        age: 16</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '漂亮阿姨',</span></span><br><span class="line"><span class="regexp">        age: 24</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '杰倫',</span></span><br><span class="line"><span class="regexp">        age: 20</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    ],</span></span><br><span class="line"><span class="regexp">   &#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/PowNlq0.jpg" alt=""></p>
+<h2 id="v-for-與-元件"><a href="#v-for-與-元件" class="headerlink" title="v-for 與 元件"></a>v-for 與 元件</h2><blockquote>
+<p>現在建議元件使用 v-for 都加上 key</p>
+</blockquote>
+<h1 id="計算與監聽"><a href="#計算與監聽" class="headerlink" title="計算與監聽"></a>計算與監聽</h1><h2 id="Computed-計算"><a href="#Computed-計算" class="headerlink" title="Computed 計算"></a>Computed 計算</h2><h3 id="過濾資料-1"><a href="#過濾資料-1" class="headerlink" title="過濾資料"></a>過濾資料</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model=<span class="string">"filterText"</span>&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">"(item, key) in filterArray"</span> :key=<span class="string">"item.age"</span>&gt;</span><br><span class="line">      &#123;&#123; key &#125;&#125; - &#123;&#123; item.name &#125;&#125; &#123;&#123; item.age &#125;&#125; 歲 &lt;input type=<span class="string">"text"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/u</span>l&gt; </span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    arrayData: [</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '小明',</span></span><br><span class="line"><span class="regexp">        age: 16</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '漂亮阿姨',</span></span><br><span class="line"><span class="regexp">        age: 24</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '杰倫',</span></span><br><span class="line"><span class="regexp">        age: 20</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    ],</span></span><br><span class="line"><span class="regexp">    filterText: '',</span></span><br><span class="line"><span class="regexp">    trigger: false,</span></span><br><span class="line"><span class="regexp">    newDate: 0</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">computed: &#123;</span></span><br><span class="line"><span class="regexp">  filterArray: function()&#123;</span></span><br><span class="line"><span class="regexp">    var vm =this;</span></span><br><span class="line"><span class="regexp">    return vm.arrayData.filter(function(item)&#123;</span></span><br><span class="line"><span class="regexp">      return item.name.match(vm.filterText);</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="時間格式"><a href="#時間格式" class="headerlink" title="時間格式"></a>時間格式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123; formatTime &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    newDate: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">computed: &#123;</span><br><span class="line">  formatTime: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.newDate)</span><br><span class="line">    <span class="keyword">var</span> dates = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">this</span>.newDate * <span class="number">1000</span>);</span><br><span class="line">    <span class="keyword">var</span> year = dates.getFullYear();</span><br><span class="line">    <span class="keyword">var</span> month = dates.getMonth() + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">var</span> date = dates.getDate();</span><br><span class="line">    <span class="keyword">var</span> hours = dates.getHours();</span><br><span class="line">    <span class="keyword">var</span> minutes = dates.getMinutes();</span><br><span class="line">    <span class="keyword">var</span> seconds = dates.getSeconds();</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;year&#125;</span>/<span class="subst">$&#123;month&#125;</span>/<span class="subst">$&#123;date&#125;</span> <span class="subst">$&#123;hours&#125;</span>:<span class="subst">$&#123;minutes&#125;</span>:<span class="subst">$&#123;seconds&#125;</span>`</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.newDate = <span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>呈現出的時間格式：<br><img src="https://i.imgur.com/blBjqqQ.jpg" alt=""></p>
+<h2 id="Watch-監聽"><a href="#Watch-監聽" class="headerlink" title="Ｗatch 監聽"></a>Ｗatch 監聽</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  <span class="comment">// 使用 trigger 來觸發旋轉 box、並在三秒後改變回來  </span></span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'rotate': trigger &#125;"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;hr&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button class="btn btn-outline-primary" @click="trigger = true"&gt;Counter&lt;/</span>button&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    trigger: false,</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">watch: &#123;</span></span><br><span class="line"><span class="regexp">  trigger: function()&#123;</span></span><br><span class="line"><span class="regexp">    var vm =this;</span></span><br><span class="line"><span class="regexp">    setTimeout(() =&gt; &#123;</span></span><br><span class="line"><span class="regexp">      vm.trigger = false</span></span><br><span class="line"><span class="regexp">    &#125;, 1000);</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.box &#123;</span><br><span class="line">  transition: all <span class="number">.5</span>s;</span><br><span class="line">&#125;</span><br><span class="line">.box.rotate &#123;</span><br><span class="line">  transform: rotate(<span class="number">45</span>deg)</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="表單補充說明"><a href="#表單補充說明" class="headerlink" title="表單補充說明"></a>表單補充說明</h1><ul>
+<li><code>v-for</code> 選取陣列內容至選項</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;select name=<span class="string">""</span> id=<span class="string">""</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model=<span class="string">"selected2"</span>&gt;</span><br><span class="line">    &lt;option disabled value=<span class="string">""</span>&gt;請選擇&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">    &lt;option :value="item" v-for="item in selectData"&gt;&#123;&#123; item &#125;&#125;&lt;/</span>option&gt;</span><br><span class="line">  &lt;<span class="regexp">/select&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    selectData: [<span class="string">'小美'</span>, <span class="string">'可愛小妞'</span>, <span class="string">'漂亮阿姨'</span>],</span><br><span class="line">    selected2: <span class="string">''</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>多選 <code>multiple</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;select name=<span class="string">""</span> id=<span class="string">""</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> multiple v-model=<span class="string">"multiSelected"</span>&gt;</span><br><span class="line">    &lt;option value=<span class="string">"小美"</span>&gt;小美&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">    &lt;option value="可愛小妞"&gt;可愛小妞&lt;/</span>option&gt;</span><br><span class="line">    &lt;option value=<span class="string">"漂亮阿姨"</span>&gt;漂亮阿姨&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>select&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    multiSelected: [],</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>true-value</code> / <code>false-value</code> 單選</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"checkbox"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-input"</span> id=<span class="string">"sex"</span> v-model=<span class="string">"sex"</span> <span class="literal">true</span>-value=<span class="string">"男生"</span> <span class="literal">false</span>-value=<span class="string">"女生"</span>&gt;</span><br><span class="line">    &lt;label <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-label"</span> <span class="keyword">for</span>=<span class="string">"sex"</span>&gt;&#123;&#123; sex &#125;&#125;&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    sex: '男生',</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修飾符補充</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// .lazy會轉變為在 change 事件中同步，也就是在失去焦點或按下反回鍵時才更新</span></span><br><span class="line">  &#123;&#123; lazyMsg &#125;&#125;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model.lazy=<span class="string">"lazyMsg"</span>&gt;</span><br><span class="line">  </span><br><span class="line"><span class="comment">// .number 可保證輸出為數值</span></span><br><span class="line">  &lt;pre&gt;&#123;&#123; <span class="keyword">typeof</span>(age) &#125;&#125; &#123;&#123; age &#125;&#125;&lt;<span class="regexp">/pre&gt;</span></span><br><span class="line"><span class="regexp">  &lt;input type="number" class="form-control" v-model.number="age"&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ .trim 讓不必要的多餘的空格自動刪除</span></span><br><span class="line"><span class="regexp">  &#123;&#123; trimMsg &#125;&#125;緊黏的文字</span></span><br><span class="line"><span class="regexp">  &lt;input type="text" class="form-control" v-model.trim="trimMsg"&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    lazyMsg: <span class="string">''</span>,</span><br><span class="line">    age: <span class="string">''</span>,</span><br><span class="line">    trimMsg: <span class="string">''</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="v-on-事件綁定"><a href="#v-on-事件綁定" class="headerlink" title="v-on 事件綁定"></a>v-on 事件綁定</h1><h2 id="帶入參數"><a href="#帶入參數" class="headerlink" title="帶入參數"></a>帶入參數</h2><blockquote>
+<p><code>click</code> 後帶入 <code>storeMoney(item)</code> 參數進行<code>function</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">"item in arrayData"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"my-2"</span>&gt;</span><br><span class="line">      &#123;&#123; item.name &#125;&#125; 有 &#123;&#123; item.cash &#125;&#125; 元 </span><br><span class="line">      &lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-sm btn-outline-primary"</span> @click=<span class="string">"storeMoney(item)"</span>&gt;儲值&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>li&gt;</span><br><span class="line">  &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    arrayData: [</span><br><span class="line">      &#123;</span><br><span class="line">        name: <span class="string">'小明'</span>,</span><br><span class="line">        age: <span class="number">16</span>,</span><br><span class="line">        cash: <span class="number">500</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">        age: <span class="number">24</span>,</span><br><span class="line">        cash: <span class="number">1000</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        name: <span class="string">'杰倫'</span>,</span><br><span class="line">        age: <span class="number">20</span>,</span><br><span class="line">        cash: <span class="number">5000</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    storeMoney: <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">      item.cash = item.cash + <span class="number">500</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="DOM元素事件修飾符"><a href="#DOM元素事件修飾符" class="headerlink" title="DOM元素事件修飾符"></a>DOM元素事件修飾符</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//是調用於 event.stopPropagation()，.stop 停止由內而外的冒泡</span></span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"p-3 bg-primary"</span> @click.stop=<span class="string">"trigger('div')"</span>&gt;</span><br><span class="line">    &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> @click.stop=<span class="string">"trigger('box')"</span>&gt;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// .capture 由外而內的冒泡</span></span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"p-3 bg-primary"</span> @click.capture=<span class="string">"trigger('div')"</span>&gt;</span><br><span class="line">    &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"box d-flex align-items-center justify-content-center"</span> @click.capture=<span class="string">"trigger('box')"</span>&gt;</span><br><span class="line">      &lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-outline-secondary"</span> @click.capture=<span class="string">"trigger('button')"</span>&gt;按我&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>span&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ .self 只當事件是從偵聽器綁定的元素本身觸發時才觸發回調</span></span><br><span class="line"><span class="regexp">  &lt;div class="p-3 bg-primary" @click.self="trigger('div')"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;span class="box d-flex align-items-center justify-content-center" @click.self="trigger('box')"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button class="btn btn-outline-secondary" @click.self="trigger('button')"&gt;按我&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// .once 事件偵聽器只觸發一次</span></span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"p-3 bg-primary"</span> @click.once=<span class="string">"trigger('div')"</span>&gt;</span><br><span class="line">    &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"box d-flex align-items-center justify-content-center"</span> @click.once=<span class="string">"trigger('box')"</span>&gt;</span><br><span class="line">      &lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-outline-secondary"</span> @click.once=<span class="string">"trigger('button')"</span>&gt;按我&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>span&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    trigger: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(name, <span class="string">'此事件被觸發了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="按鍵修飾符"><a href="#按鍵修飾符" class="headerlink" title="按鍵修飾符"></a>按鍵修飾符</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  <span class="comment">//keyCode 每個按鍵都有自己的 keyCode</span></span><br><span class="line">  &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model=<span class="string">"text"</span> @keyup<span class="number">.13</span>=<span class="string">"trigger(13)"</span>&gt;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//別名修飾 .enter, .tab, .delete, .esc, .space, .up, .down, .left, .right</span></span><br><span class="line">  &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model=<span class="string">"text"</span> @keyup.space=<span class="string">"trigger('space')"</span>&gt;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//相應按鍵時才觸發</span></span><br><span class="line">  &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model=<span class="string">"text"</span> @keyup.shift.enter=<span class="string">"trigger('shift + Enter')"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    trigger: function(name) &#123;</span></span><br><span class="line"><span class="regexp">      console.log(name, '此事件被觸發了')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="滑鼠修飾符"><a href="#滑鼠修飾符" class="headerlink" title="滑鼠修飾符"></a>滑鼠修飾符</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">//.left 只當點擊鼠標左鍵時觸發。</span></span><br><span class="line">    <span class="comment">//.right 只當點擊鼠標右鍵時觸發。</span></span><br><span class="line">    <span class="comment">//.middle 只當點擊鼠標中鍵時觸發。</span></span><br><span class="line"></span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"p-3 bg-primary"</span>&gt;</span><br><span class="line">    &lt;span <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> @click.right=<span class="string">"trigger('Right button')"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  methods: &#123;</span></span><br><span class="line"><span class="regexp">    trigger: function(name) &#123;</span></span><br><span class="line"><span class="regexp">      console.log(name, '此事件被觸發了')</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a href="https://cn.vuejs.org/v2/guide/installation.html" target="_blank" rel="noopener">Vue.js 官方中文</a><br><a href="https://www.runoob.com/vue2/vue-tutorial.html" target="_blank" rel="noopener">菜鳥教程</a><br><a href="https://www.itread01.com/content/1541221390.html" target="_blank" rel="noopener">IT閱讀</a><br><a href="https://www.hexschool.com/courses/" target="_blank" rel="noopener">六角學院-Vue出一個電商網站</a></p>
+<p><strong>&lt;——-學習筆記，若有錯誤請務必指教——-&gt;</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/SasaChing.github.io/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/SasaChing.github.io/2020/04/27/Vuejs-1/" rel="next" title="[Vue.js 筆記 (一) 基礎教程]">
+                <i class="fa fa-chevron-left"></i> [Vue.js 筆記 (一) 基礎教程]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/SasaChing.github.io/images/%E5%80%8B%E4%BA%BA%E7%85%A7%E7%89%87.jpg"
+                alt="Sabrina" />
+            
+              <p class="site-author-name" itemprop="name">Sabrina</p>
+              <p class="site-description motion-element" itemprop="description">學習＆練習&耍廢</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/SasaChing.github.io/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/SasaChing.github.io/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/SasaChing.github.io/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/SasaChing" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jean66536028@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/sabrinahuang0917" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基礎模板語法"><span class="nav-number">1.</span> <span class="nav-text">基礎模板語法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class-切換樣式"><span class="nav-number">2.</span> <span class="nav-text">Class 切換樣式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-if-模板判斷"><span class="nav-number">3.</span> <span class="nav-text">v-if 模板判斷</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v-if-v-else"><span class="nav-number">3.1.</span> <span class="nav-text">v-if, v-else</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#template-標籤"><span class="nav-number">3.2.</span> <span class="nav-text">template 標籤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-else-if-分頁頁籤"><span class="nav-number">3.3.</span> <span class="nav-text">v-else-if 分頁頁籤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#key"><span class="nav-number">3.4.</span> <span class="nav-text">key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-if-與-v-show"><span class="nav-number">3.5.</span> <span class="nav-text">v-if 與 v-show</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-for-迴圈"><span class="nav-number">4.</span> <span class="nav-text">v-for 迴圈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#過濾資料"><span class="nav-number">4.1.</span> <span class="nav-text">過濾資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不能運作的錯誤狀況"><span class="nav-number">4.2.</span> <span class="nav-text">不能運作的錯誤狀況</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#純數字迴圈"><span class="nav-number">4.3.</span> <span class="nav-text">純數字迴圈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#template-的運用"><span class="nav-number">4.4.</span> <span class="nav-text">template 的運用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-for-與-元件"><span class="nav-number">4.5.</span> <span class="nav-text">v-for 與 元件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#計算與監聽"><span class="nav-number">5.</span> <span class="nav-text">計算與監聽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Computed-計算"><span class="nav-number">5.1.</span> <span class="nav-text">Computed 計算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#過濾資料-1"><span class="nav-number">5.1.1.</span> <span class="nav-text">過濾資料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#時間格式"><span class="nav-number">5.1.2.</span> <span class="nav-text">時間格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Watch-監聽"><span class="nav-number">5.2.</span> <span class="nav-text">Ｗatch 監聽</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表單補充說明"><span class="nav-number">6.</span> <span class="nav-text">表單補充說明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#v-on-事件綁定"><span class="nav-number">7.</span> <span class="nav-text">v-on 事件綁定</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#帶入參數"><span class="nav-number">7.1.</span> <span class="nav-text">帶入參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM元素事件修飾符"><span class="nav-number">7.2.</span> <span class="nav-text">DOM元素事件修飾符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按鍵修飾符"><span class="nav-number">7.3.</span> <span class="nav-text">按鍵修飾符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滑鼠修飾符"><span class="nav-number">7.4.</span> <span class="nav-text">滑鼠修飾符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考"><span class="nav-number">8.</span> <span class="nav-text">參考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sabrina - 轉載文章請附上作者及原文連結</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/SasaChing.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://sabrinas-blog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://sasaching.github.io/2020/05/14/Vuejs-2/';
+          this.page.identifier = '2020/05/14/Vuejs-2/';
+          this.page.title = '[Vue.js 筆記 (二) 模板指令]';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://sabrinas-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
