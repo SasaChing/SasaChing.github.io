@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/SasaChing.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/SasaChing.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/SasaChing.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/SasaChing.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/SasaChing.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/SasaChing.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/SasaChing.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue.js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基礎元件 Vue Component 簡單來說是能夠把 Html 包裝起來並且使用自定義的標籤，就可以直接運用在網頁上。   元件重複使用，資料都是獨立運作 元件也能包元件 可避免大量資料冗長  傳遞資料 元件內外層傳遞資料方式    v-for 的 item 指向 data 裡的陣列資料，傳入 :person&#x3D;&quot;item&quot;，再由外層以 props:[&#39;person&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue.js 筆記 (二) 元件]">
+<meta property="og:url" content="https://sasaching.github.io/2020/05/15/Vuejs-3/index.html">
+<meta property="og:site_name" content="Sabrina&#39;s Blog">
+<meta property="og:description" content="基礎元件 Vue Component 簡單來說是能夠把 Html 包裝起來並且使用自定義的標籤，就可以直接運用在網頁上。   元件重複使用，資料都是獨立運作 元件也能包元件 可避免大量資料冗長  傳遞資料 元件內外層傳遞資料方式    v-for 的 item 指向 data 裡的陣列資料，傳入 :person&#x3D;&quot;item&quot;，再由外層以 props:[&#39;person&amp;#">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/Rtot3g3.jpg">
+<meta property="og:image" content="https://i.imgur.com/xg87YZq.jpg">
+<meta property="og:image" content="https://i.imgur.com/xZv0qSy.jpg">
+<meta property="og:image" content="https://i.imgur.com/GjdDBGv.jpg">
+<meta property="og:image" content="https://i.imgur.com/NCI9ukq.jpg">
+<meta property="og:image" content="https://i.imgur.com/Cwn2My4.jpg">
+<meta property="og:image" content="https://i.imgur.com/HtbO3P1.jpg">
+<meta property="og:image" content="https://i.imgur.com/uNZoPCC.jpg">
+<meta property="og:image" content="https://i.imgur.com/fhrNao0.jpg">
+<meta property="og:image" content="https://i.imgur.com/97ggL26.jpg">
+<meta property="article:published_time" content="2020-05-15T07:47:02.989Z">
+<meta property="article:modified_time" content="2020-05-15T07:52:11.216Z">
+<meta property="article:author" content="Sabrina">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/Rtot3g3.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/SasaChing.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://SasaChing.github.io/2020/05/15/Vuejs-3/"/>
+
+
+
+
+
+  <title>[Vue.js 筆記 (二) 元件] | Sabrina's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/SasaChing.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sabrina's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Code notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/SasaChing.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/SasaChing.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/SasaChing.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/SasaChing.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/SasaChing.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://SasaChing.github.io/SasaChing.github.io/2020/05/15/Vuejs-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sabrina">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/SasaChing.github.io/images/%E5%80%8B%E4%BA%BA%E7%85%A7%E7%89%87.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sabrina's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Vue.js 筆記 (二) 元件]</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-05-15T15:47:02+08:00">
+                2020-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/SasaChing.github.io/categories/Vue-js%E7%AD%86%E8%A8%98/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue.js筆記</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/SasaChing.github.io/2020/05/15/Vuejs-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/05/15/Vuejs-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基礎元件"><a href="#基礎元件" class="headerlink" title="基礎元件"></a>基礎元件</h1><blockquote>
+<p>Vue Component 簡單來說是能夠把 <code>Html</code> 包裝起來並且使用自定義的標籤，就可以直接運用在網頁上。</p>
+</blockquote>
+<ul>
+<li>元件重複使用，資料都是獨立運作</li>
+<li>元件也能包元件</li>
+<li>可避免大量資料冗長</li>
+</ul>
+<h2 id="傳遞資料"><a href="#傳遞資料" class="headerlink" title="傳遞資料"></a>傳遞資料</h2><blockquote>
+<p>元件內外層傳遞資料方式</p>
+</blockquote>
+<p><img src="https://i.imgur.com/Rtot3g3.jpg" alt=""></p>
+<ul>
+<li><code>v-for</code> 的 <code>item</code> 指向 <code>data</code> 裡的陣列資料，傳入 <code>:person=&quot;item&quot;</code>，再由外層以 <code>props:[&#39;person&#39;]</code> 傳入內層。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;table <span class="class"><span class="keyword">class</span></span>=<span class="string">"table"</span>&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">    &lt;<span class="regexp">/thead&gt;</span></span><br><span class="line"><span class="regexp">    &lt;tbody&gt;</span></span><br><span class="line"><span class="regexp">      &lt;tr is="row-component" v-for="(item, key) in data" :person="item" :key="key"&gt;&lt;/</span>tr&gt;</span><br><span class="line">    &lt;<span class="regexp">/tbody&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>table&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>x-template<span class="string">" id="</span>rowComponentTemplate<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  &lt;tr&gt;</span></span><br><span class="line"><span class="string">    &lt;td&gt;&#123;&#123; person.name &#125;&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">    &lt;td&gt;&#123;&#123; person.cash &#125;&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">    &lt;td&gt;&#123;&#123; person.icash &#125;&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">  &lt;/tr&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">Vue.component('row-component',&#123;</span></span><br><span class="line"><span class="string">  template: '#rowComponentTemplate',</span></span><br><span class="line"><span class="string">  props:['person'],</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
+<h2 id="x-template"><a href="#x-template" class="headerlink" title="x-template"></a>x-template</h2><blockquote>
+<p>由於再建立 <code>component</code> 時，隨著資料量愈來越多，也會更加難以閱讀，所以使用<code>x-template</code> 能夠在包裝一次<code>template</code> 顯得更加簡潔。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script id=<span class="string">"xox"</span> type=<span class="string">"text/x-template"</span>&gt;</span><br><span class="line">Html字串</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">Vue.component('元件名稱',&#123;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 這裡引用 x-template 的 id 即可</span></span><br><span class="line"><span class="regexp">  template: '#xox',</span></span><br><span class="line"><span class="regexp">  props:['person'],</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="is-屬性"><a href="#is-屬性" class="headerlink" title="is 屬性"></a>is 屬性</h2><blockquote>
+<p>動態切換模板</p>
+</blockquote>
+<p>有些情況例如<code>tbody</code> 內只會出現 <code>tr</code>、<code>td</code> 如果出現了元件或其他<code>tag</code> 則可能會出現跑版、錯誤的產生，所以這時可以使用<code>is</code>來做動態切換模板。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 以範例用 is 屬性來切換 row-component 元件</span></span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;table <span class="class"><span class="keyword">class</span></span>=<span class="string">"table"</span>&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">    &lt;<span class="regexp">/thead&gt;</span></span><br><span class="line"><span class="regexp">    &lt;tbody&gt;</span></span><br><span class="line"><span class="regexp">      &lt;tr is="row-component"&gt;&lt;/</span>tr&gt;</span><br><span class="line">    &lt;<span class="regexp">/tbody&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>table&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="全域＆局部註冊"><a href="#全域＆局部註冊" class="headerlink" title="全域＆局部註冊"></a>全域＆局部註冊</h2><h3 id="全域註冊"><a href="#全域註冊" class="headerlink" title="全域註冊"></a>全域註冊</h3><blockquote>
+<p>可讓所有Vue應用程式所使用</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 使用 x-template 的方式</span></span><br><span class="line">&lt;script type=<span class="string">"text/x-template"</span> id=<span class="string">"rowComponentTemplate"</span>&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123; person.name &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">    &lt;td&gt;&#123;&#123; person.cash &#125;&#125;&lt;/</span>td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123; person.icash &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>tr&gt;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">Vue.component('row-component',&#123;</span></span><br><span class="line"><span class="regexp">  template: '#rowComponentTemplate',</span></span><br><span class="line"><span class="regexp">  props:['person'],</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="局部註冊"><a href="#局部註冊" class="headerlink" title="局部註冊"></a>局部註冊</h3><blockquote>
+<p>只在有註冊component的Vue應用程式所使用</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/x-template"</span> id=<span class="string">"rowComponentTemplate"</span>&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123; person.name &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">    &lt;td&gt;&#123;&#123; person.cash &#125;&#125;&lt;/</span>td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123; person.icash &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>tr&gt;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var child = &#123;</span></span><br><span class="line"><span class="regexp">  template: '#rowComponentTemplate',</span></span><br><span class="line"><span class="regexp">  props:['person'],</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    data: [</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '小新',</span></span><br><span class="line"><span class="regexp">        cash: 100,</span></span><br><span class="line"><span class="regexp">        icash: 500,</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '正男',</span></span><br><span class="line"><span class="regexp">        cash: 10000,</span></span><br><span class="line"><span class="regexp">        icash: 5000,</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br><span class="line"><span class="regexp">    ]</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  components: &#123;</span></span><br><span class="line"><span class="regexp">    "row-component": child</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="function-return"><a href="#function-return" class="headerlink" title="function return"></a>function return</h1><blockquote>
+<p>在<code>component</code> 裡使用<code>data</code>必須要加上 <code>function()</code> 並且使用<code>return {}</code>回傳</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(<span class="string">'counter-component'</span>, &#123;</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      counter: <span class="number">0</span>&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">'#counter-component'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h1><h2 id="由外到內的資料傳遞"><a href="#由外到內的資料傳遞" class="headerlink" title="由外到內的資料傳遞"></a>由外到內的資料傳遞</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;h2&gt;靜態傳遞&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">  &lt;photo img-url="https:/</span><span class="regexp">/lorempixel.com/</span><span class="number">400</span>/<span class="number">200</span><span class="string">"&gt;&lt;/photo&gt;</span></span><br><span class="line"><span class="string">  &lt;h2&gt;動態傳遞&lt;/h2&gt;</span></span><br><span class="line"><span class="string">  &lt;photo :img-url="</span>url<span class="string">"&gt;&lt;/photo&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;script type="</span>text/x-template<span class="string">" id="</span>photo<span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;div&gt;</span></span><br><span class="line"><span class="string">  &lt;img :src="</span>imgUrl<span class="string">" class="</span>img-fluid<span class="string">" alt="</span><span class="string">" /&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">Vue.component('photo', &#123;</span></span><br><span class="line"><span class="string">  props:['imgUrl'],</span></span><br><span class="line"><span class="string">  template: '#photo'</span></span><br><span class="line"><span class="string">&#125;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">var app = new Vue(&#123;</span></span><br><span class="line"><span class="string">  el: '#app',</span></span><br><span class="line"><span class="string">  data: &#123;</span></span><br><span class="line"><span class="string">    url: 'https://lorempixel.com/400/200'</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/xg87YZq.jpg" alt=""></p>
+<h2 id="注意事項"><a href="#注意事項" class="headerlink" title="注意事項"></a>注意事項</h2><h3 id="單向數據流"><a href="#單向數據流" class="headerlink" title="單向數據流"></a>單向數據流</h3><blockquote>
+<p>不能直接修改外部<code>props</code>傳進來的內容，不能反向的傳回去。然而要更正這個錯誤，必須在<code>component</code>加上<code>data</code>、<code>function</code>、<code>return</code> 增加一個<code>newUrl</code>來接收修改過的<code>imgUrl</code>，並且到<code>x-template</code> 更正<code>v-model</code>為新的<code>newUrl</code>。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/x-template"</span> id=<span class="string">"photo"</span>&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;img :src=<span class="string">"imgUrl"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-fluid"</span> alt=<span class="string">""</span> /&gt;</span><br><span class="line">  &lt;input type=<span class="string">"text"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span> v-model=<span class="string">"newUrl"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(<span class="string">'photo'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'imgUrl'</span>],</span><br><span class="line">  template: <span class="string">'#photo'</span>,</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      newUrl: <span class="keyword">this</span>.imgUrl</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="尚未宣告的變數"><a href="#尚未宣告的變數" class="headerlink" title="尚未宣告的變數"></a>尚未宣告的變數</h3><blockquote>
+<p>在進行<code>Ajax</code>行為時，索取資料的時間差，會讓<code>Vue</code>找不到其中某些變數（尚未宣告的變數）而產生的錯誤，而我們可以用<code>v-if</code>來解決狀況。</p>
+</blockquote>
+<p>可以先選擇<code>Ajax</code>所讀進來的資料裡某個項目，例如：phone意味著假設<code>user.phone</code>尚未讀進來時就不要顯示<code>card</code>，來做判斷式，結果能因為時間差而尚未宣告的變數不再產生錯誤。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"row"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-4"</span>&gt;</span><br><span class="line">    &lt;card :user-data=<span class="string">"user"</span> v-<span class="keyword">if</span>=<span class="string">"user.phone"</span>&gt;&lt;<span class="regexp">/card&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="維持狀態與生命週期"><a href="#維持狀態與生命週期" class="headerlink" title="維持狀態與生命週期"></a>維持狀態與生命週期</h3><blockquote>
+<p>元件若再重新生成使用時，都會完全重新執行一次程式碼且重新一次生命週期，若不需要此行為可以使用<code>keep-alive</code>讓程式碼可以先暫時隱藏，等到啟用時也可以保持原本的狀態。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check"</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">"checkbox"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-input"</span> id=<span class="string">"isShow"</span> v-model=<span class="string">"isShow"</span>&gt;</span><br><span class="line">    &lt;label <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-check-label"</span> <span class="keyword">for</span>=<span class="string">"isShow"</span>&gt;Check me out&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"row"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-sm-4"</span>&gt;</span><br><span class="line">      &lt;keep-alive&gt;</span><br><span class="line">      &lt;keep-card v-<span class="keyword">if</span>=<span class="string">"isShow"</span>&gt;</span><br><span class="line">      &lt;<span class="regexp">/keep-card&gt;      </span></span><br><span class="line"><span class="regexp">      &lt;/</span>keep-alive&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="型別"><a href="#型別" class="headerlink" title="型別"></a>型別</h2><blockquote>
+<p>提早定義<code>props</code>的數據型別，可以避免之後運算時產生型別錯誤。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 擁有預設值且定義 props 型別</span></span><br><span class="line">  &lt;prop-type&gt;&lt;<span class="regexp">/prop-type&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ 加入：產生動態傳入數值才能有 number type</span></span><br><span class="line"><span class="regexp">  &lt;prop-type :cash="300"&gt;&lt;/</span>prop-type&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>x-template<span class="string">" id="</span>propType<span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;div&gt;</span></span><br><span class="line"><span class="string">  &lt;input type="</span>number<span class="string">" class="</span>form-control<span class="string">" v-model="</span>newCash<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  &#123;&#123; typeof(cash)&#125;&#125;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">Vue.component('prop-type', &#123;</span></span><br><span class="line"><span class="string">  props:&#123;</span></span><br><span class="line"><span class="string">    cash:&#123;</span></span><br><span class="line"><span class="string">    // 定義型別</span></span><br><span class="line"><span class="string">      type: Number,</span></span><br><span class="line"><span class="string">    // 設定預設值</span></span><br><span class="line"><span class="string">      default: 200,</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  template: '#propType',</span></span><br><span class="line"><span class="string">    data: function() &#123;</span></span><br><span class="line"><span class="string">      return &#123;</span></span><br><span class="line"><span class="string">        newCash: this.cash</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">var app = new Vue(&#123;</span></span><br><span class="line"><span class="string">  el: '#app',</span></span><br><span class="line"><span class="string">  data: &#123;</span></span><br><span class="line"><span class="string">  // 改為 number type</span></span><br><span class="line"><span class="string">    cash: 300,</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/xZv0qSy.jpg" alt=""></p>
+<h1 id="emit-向外層傳送事件"><a href="#emit-向外層傳送事件" class="headerlink" title="emit 向外層傳送事件"></a>emit 向外層傳送事件</h1><blockquote>
+<p>由內而外傳送資料時必須用事件來觸發</p>
+</blockquote>
+<p>在<code>button-counter</code>元件內新增了<code>@add=&quot;addCounter&quot;</code>事件來觸發資料傳送，在元件內<code>template</code>包裝了<code>incrementCounter</code>來執行註冊在<code>methods</code>的<code>add</code>事件，進而觸發<code>addCounter</code>行為傳送。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  我透過元件儲值了 &#123;&#123; cash &#125;&#125; 元</span><br><span class="line">  &lt;button-counter @add=<span class="string">"addCounter"</span>&gt;&lt;<span class="regexp">/button-counter&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(<span class="string">'buttonCounter'</span>, &#123;</span><br><span class="line">  template: <span class="string">`&lt;div&gt;</span></span><br><span class="line"><span class="string">    &lt;button @click="incrementCounter" class="btn btn-outline-primary"&gt;增加 &#123;&#123; counter &#125;&#125; 元&lt;/button&gt;</span></span><br><span class="line"><span class="string">    &lt;input type="number" class="form-control mt-2" v-model="counter"&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;`</span>,</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      counter: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    incrementCounter: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.$emit(<span class="string">'add'</span>,<span class="built_in">Number</span>(<span class="keyword">this</span>.counter))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    cash: <span class="number">300</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    addCounter: <span class="function"><span class="keyword">function</span>(<span class="params">newNum</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.cash = <span class="keyword">this</span>.cash + newNum;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/GjdDBGv.jpg" alt=""><br><img src="https://i.imgur.com/NCI9ukq.jpg" alt=""><br><img src="https://i.imgur.com/Cwn2My4.jpg" alt=""></p>
+<h1 id="Slot-插槽替換"><a href="#Slot-插槽替換" class="headerlink" title="Slot 插槽替換"></a>Slot 插槽替換</h1><blockquote>
+<p>當要重複使用元件時，並不是每次都是使用一樣的模板，可能內容需要更改時，就可以使用<code>Slot</code>插槽替換部分內容</p>
+</blockquote>
+<h2 id="單一插槽"><a href="#單一插槽" class="headerlink" title="單一插槽"></a>單一插槽</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;single-slot-component&gt;&lt;<span class="regexp">/single-slot-component&gt;</span></span><br><span class="line"><span class="regexp">  &lt;single-slot-component&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;使用這段取代原本的 Slot。&lt;/</span>p&gt;</span><br><span class="line">  &lt;<span class="regexp">/single-slot-component&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/x-template"</span> id=<span class="string">"singleSlotComponent"</span>&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"alert alert-warning"</span>&gt;</span><br><span class="line">  &lt;h6&gt;我是一個元件&lt;<span class="regexp">/h6&gt;</span></span><br><span class="line"><span class="regexp">  &lt;slot&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div&gt;</span></span><br><span class="line"><span class="regexp">    如果沒有內容，則會顯示此段落(預設值)</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/slot&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">Vue.component('single-slot-component', &#123;</span></span><br><span class="line"><span class="regexp">  template: '#singleSlotComponent',</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">Vue.component('named-slot-component', &#123;</span></span><br><span class="line"><span class="regexp">  template: '#namedSlotComponent',</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;&#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/HtbO3P1.jpg" alt=""></p>
+<h2 id="具名插槽"><a href="#具名插槽" class="headerlink" title="具名插槽"></a>具名插槽</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;named-slot-component&gt;&lt;<span class="regexp">/named-slot-component&gt;</span></span><br><span class="line"><span class="regexp">  &lt;named-slot-component&gt;</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ 增加 slot 屬性，並自定義名稱</span></span><br><span class="line"><span class="regexp">    &lt;header slot="header"&gt;替換的 Header&lt;/</span>header&gt;</span><br><span class="line">    &lt;template slot=<span class="string">"footer"</span>&gt;替換的 Footer&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">    &lt;template slot="btn"&gt;按鈕內容&lt;/</span>template&gt;</span><br><span class="line">    &lt;p slot=<span class="string">"string"</span>&gt;其餘的內容&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>named-slot-component&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>x-template<span class="string">" id="</span>namedSlotComponent<span class="string">"&gt;</span></span><br><span class="line"><span class="string">&lt;div class="</span>card my<span class="number">-3</span><span class="string">"&gt;</span></span><br><span class="line"><span class="string">  &lt;div class="</span>card-header<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  // 使用 slot 標籤包起來後，利用 name 屬性和上方自定義名稱相同</span></span><br><span class="line"><span class="string">    &lt;slot name="</span>header<span class="string">"&gt;這段是預設的文字&lt;/slot&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;div class="</span>card-body<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;slot name="</span>string<span class="string">"&gt;</span></span><br><span class="line"><span class="string">      &lt;h5 class="</span>card-title<span class="string">"&gt;Special title treatment&lt;/h5&gt;</span></span><br><span class="line"><span class="string">      &lt;p class="</span>card-text<span class="string">"&gt;With supporting text below as a natural lead-in to additional content.&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;/slot&gt;</span></span><br><span class="line">    &lt;a href="#" class="btn btn-primary"&gt;</span><br><span class="line">      &lt;slot name=<span class="string">"btn"</span>&gt;spanGo somewhere&lt;<span class="regexp">/slot&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>a&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="card-footer"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;slot name="footer"&gt;這是預設的 Footer&lt;/</span>slot&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">Vue.component('named-slot-component', &#123;</span></span><br><span class="line"><span class="regexp">  template: '#namedSlotComponent',</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;&#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/uNZoPCC.jpg" alt=""></p>
+<h1 id="動態組件"><a href="#動態組件" class="headerlink" title="動態組件"></a>動態組件</h1><blockquote>
+<p>is 顯示單一組件</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//這兩行程式碼會呈現相同的效果</span></span><br><span class="line"></span><br><span class="line">  &lt;primary-component :data=<span class="string">"item"</span>&gt;&lt;<span class="regexp">/primary-component&gt;</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  &lt;div is="primary-component" :data="item"&gt;&lt;/</span>div&gt;</span><br><span class="line">  <span class="comment">// 以靜態載入</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>is 動態切換組件</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav nav-pills"</span>&gt;</span><br><span class="line">    &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-item"</span>&gt;</span><br><span class="line">      &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-link"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'active': current == 'primary-component'&#125;"</span> href=<span class="string">"#"</span> @click.prevent=<span class="string">"current = 'primary-component'"</span>&gt;藍綠色元件&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>li&gt;</span><br><span class="line">    &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-item"</span>&gt;</span><br><span class="line">      &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-link"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'active': current == 'danger-component'&#125;"</span> href=<span class="string">"#"</span> @click.prevent=<span class="string">"current = 'danger-component'"</span>&gt;紅色元件&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>li&gt;</span><br><span class="line">  &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="mt-3"&gt;</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ 以動態載入</span></span><br><span class="line"><span class="regexp">    &lt;div :is="current" :data="item"&gt;&lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/x-template"</span> id=<span class="string">"primaryComponent"</span>&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"card text-white bg-primary mb-3"</span> style=<span class="string">"max-width: 18rem;"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"card-header"</span>&gt;&#123;&#123; data.header &#125;&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="card-body"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h5 class="card-title"&gt;&#123;&#123; data.title &#125;&#125;&lt;/</span>h5&gt;</span><br><span class="line">    &lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"card-text"</span>&gt;&#123;&#123; data.text &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/x-template"</span> id=<span class="string">"dangerComponent"</span>&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"card text-white bg-danger mb-3"</span> style=<span class="string">"max-width: 18rem;"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"card-header"</span>&gt;&#123;&#123; data.header &#125;&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div class="card-body"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h5 class="card-title"&gt;&#123;&#123; data.title &#125;&#125;&lt;/</span>h5&gt;</span><br><span class="line">    &lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"card-text"</span>&gt;&#123;&#123; data.text &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">Vue.component(<span class="string">'primary-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'data'</span>],</span><br><span class="line">  template: <span class="string">'#primaryComponent'</span>,</span><br><span class="line">&#125;);</span><br><span class="line">Vue.component(<span class="string">'danger-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'data'</span>],</span><br><span class="line">  template: <span class="string">'#dangerComponent'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    item: &#123;</span><br><span class="line">      header: <span class="string">'這裡是 header'</span>,</span><br><span class="line">      title: <span class="string">'這裡是 title'</span>,</span><br><span class="line">      text: <span class="string">'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim perferendis illo reprehenderit ex natus earum explicabo modi voluptas cupiditate aperiam, quasi quisquam mollitia velit ut odio vitae atque incidunt minus?'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    current: <span class="string">'primary-component'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/fhrNao0.jpg" alt=""><br><img src="https://i.imgur.com/97ggL26.jpg" alt=""></p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a href="https://kuro.tw/posts/2017/09/21/VueJS-%E5%85%83%E4%BB%B6%E8%BC%89%E5%85%A5%E6%A8%A1%E6%9D%BF-template-%E7%9A%84%E5%B9%BE%E7%A8%AE%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">Kuro’s Blog-VueJS 元件載入模板 (template) 的幾種方式</a><br><a href="https://cythilya.github.io/2017/05/11/vue-component-intro/" target="_blank" rel="noopener">Summer。桑莫。夏天-Vue.js: 元件 Components</a><br><a href="https://cn.vuejs.org/v2/guide/installation.html" target="_blank" rel="noopener">Vue.js 官方中文</a><br><a href="https://www.runoob.com/vue2/vue-tutorial.html" target="_blank" rel="noopener">菜鳥教程</a><br><a href="https://www.hexschool.com/courses/" target="_blank" rel="noopener">六角學院-Vue出一個電商網站</a></p>
+<p><strong>&lt;——-學習筆記，若有錯誤請務必指教——-&gt;</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/SasaChing.github.io/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/SasaChing.github.io/2020/05/14/Vuejs-2/" rel="next" title="[Vue.js 筆記 (二) 模板指令]">
+                <i class="fa fa-chevron-left"></i> [Vue.js 筆記 (二) 模板指令]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/SasaChing.github.io/images/%E5%80%8B%E4%BA%BA%E7%85%A7%E7%89%87.jpg"
+                alt="Sabrina" />
+            
+              <p class="site-author-name" itemprop="name">Sabrina</p>
+              <p class="site-description motion-element" itemprop="description">學習＆練習&耍廢</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/SasaChing.github.io/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/SasaChing.github.io/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/SasaChing.github.io/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/SasaChing" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jean66536028@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/sabrinahuang0917" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基礎元件"><span class="nav-number">1.</span> <span class="nav-text">基礎元件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#傳遞資料"><span class="nav-number">1.1.</span> <span class="nav-text">傳遞資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x-template"><span class="nav-number">1.2.</span> <span class="nav-text">x-template</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#is-屬性"><span class="nav-number">1.3.</span> <span class="nav-text">is 屬性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全域＆局部註冊"><span class="nav-number">1.4.</span> <span class="nav-text">全域＆局部註冊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全域註冊"><span class="nav-number">1.4.1.</span> <span class="nav-text">全域註冊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部註冊"><span class="nav-number">1.4.2.</span> <span class="nav-text">局部註冊</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#function-return"><span class="nav-number">2.</span> <span class="nav-text">function return</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Props"><span class="nav-number">3.</span> <span class="nav-text">Props</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#由外到內的資料傳遞"><span class="nav-number">3.1.</span> <span class="nav-text">由外到內的資料傳遞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事項"><span class="nav-number">3.2.</span> <span class="nav-text">注意事項</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#單向數據流"><span class="nav-number">3.2.1.</span> <span class="nav-text">單向數據流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尚未宣告的變數"><span class="nav-number">3.2.2.</span> <span class="nav-text">尚未宣告的變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#維持狀態與生命週期"><span class="nav-number">3.2.3.</span> <span class="nav-text">維持狀態與生命週期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#型別"><span class="nav-number">3.3.</span> <span class="nav-text">型別</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#emit-向外層傳送事件"><span class="nav-number">4.</span> <span class="nav-text">emit 向外層傳送事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Slot-插槽替換"><span class="nav-number">5.</span> <span class="nav-text">Slot 插槽替換</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#單一插槽"><span class="nav-number">5.1.</span> <span class="nav-text">單一插槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具名插槽"><span class="nav-number">5.2.</span> <span class="nav-text">具名插槽</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#動態組件"><span class="nav-number">6.</span> <span class="nav-text">動態組件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考"><span class="nav-number">7.</span> <span class="nav-text">參考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sabrina - 轉載文章請附上作者及原文連結</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/SasaChing.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://sabrinas-blog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://sasaching.github.io/2020/05/15/Vuejs-3/';
+          this.page.identifier = '2020/05/15/Vuejs-3/';
+          this.page.title = '[Vue.js 筆記 (二) 元件]';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://sabrinas-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
