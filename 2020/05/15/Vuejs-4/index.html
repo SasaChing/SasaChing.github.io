@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/SasaChing.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/SasaChing.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/SasaChing.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/SasaChing.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/SasaChing.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/SasaChing.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/SasaChing.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue.js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="let &amp; var比較 var ＆ let 範例一  123456789console.log(mom);var mom &#x3D; &#39;老媽&#39;;(function () &amp;#123;  console.log(mom);&amp;#125;)();－－－－－－－－－－－－－－undefined  console.log(mom); 在 var 之前能夠產生 undefined 是因為有hoisting特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue.js 筆記 (四) ES6]">
+<meta property="og:url" content="https://sasaching.github.io/2020/05/15/Vuejs-4/index.html">
+<meta property="og:site_name" content="Sabrina&#39;s Blog">
+<meta property="og:description" content="let &amp; var比較 var ＆ let 範例一  123456789console.log(mom);var mom &#x3D; &#39;老媽&#39;;(function () &amp;#123;  console.log(mom);&amp;#125;)();－－－－－－－－－－－－－－undefined  console.log(mom); 在 var 之前能夠產生 undefined 是因為有hoisting特性">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-05-15T10:46:52.324Z">
+<meta property="article:modified_time" content="2020-06-17T08:15:26.344Z">
+<meta property="article:author" content="Sabrina">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/SasaChing.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://SasaChing.github.io/2020/05/15/Vuejs-4/"/>
+
+
+
+
+
+  <title>[Vue.js 筆記 (四) ES6] | Sabrina's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/SasaChing.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sabrina's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Code notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/SasaChing.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/SasaChing.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/SasaChing.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/SasaChing.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/SasaChing.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://SasaChing.github.io/SasaChing.github.io/2020/05/15/Vuejs-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sabrina">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/SasaChing.github.io/images/%E5%80%8B%E4%BA%BA%E7%85%A7%E7%89%87.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sabrina's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Vue.js 筆記 (四) ES6]</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-05-15T18:46:52+08:00">
+                2020-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/SasaChing.github.io/categories/Vue-js%E7%AD%86%E8%A8%98/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue.js筆記</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/SasaChing.github.io/2020/05/15/Vuejs-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/05/15/Vuejs-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="let-amp-var"><a href="#let-amp-var" class="headerlink" title="let &amp; var"></a>let &amp; var</h1><h2 id="比較-var-＆-let"><a href="#比較-var-＆-let" class="headerlink" title="比較 var ＆ let"></a>比較 var ＆ let</h2><blockquote>
+<p>範例一</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(mom);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mom = <span class="string">'老媽'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(mom);</span><br><span class="line">&#125;)();</span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"></span><br><span class="line"><span class="literal">undefined</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>console.log(mom);</code> 在 <code>var</code> 之前能夠產生 <code>undefined</code> 是因為有<code>hoisting</code>特性</li>
+</ul>
+<blockquote>
+<p><code>hoisting</code>特性：變數和函數的宣告會在編譯階段就被放入記憶體。</p>
+</blockquote>
+<ul>
+<li><code>undefined</code> 已經有預備變數位置</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(mom);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mom = <span class="string">'老媽'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(mom);</span><br><span class="line">&#125;)();</span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"></span><br><span class="line">Uncaught <span class="built_in">ReferenceError</span>: Cannot access <span class="string">'mom'</span> before initialization</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>let</code> 可避免產生全域變數</li>
+<li><code>not defined</code>尚未準備變數空間</li>
+</ul>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><blockquote>
+<p>範例二</p>
+</blockquote>
+<ul>
+<li><code>var</code> 作用域是<code>function scope</code> (<code>function</code>內都能取用) 因此使用 var 會產生杰哥</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">varMing</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> ming = <span class="string">'小明'</span>;</span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">     <span class="keyword">var</span> ming = <span class="string">'杰哥'</span>;  </span><br><span class="line">     <span class="comment">// 這裡的 ming 依然是外層的小明，所以小明即將被取代</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(ming);</span><br><span class="line"> &#125;</span><br><span class="line"> varMing ()</span><br><span class="line"> </span><br><span class="line"> －－－－－－－－－－－－－－</span><br><span class="line">杰哥</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>let</code> 作用域 <code>block</code> 只在內層大括號內 使用 <code>let</code> 會產生小明 內層並不會影響到外層變數</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">varMing</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">let</span> ming = <span class="string">'小明'</span>;</span><br><span class="line">   <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">     <span class="keyword">let</span> ming = <span class="string">'杰哥'</span>; </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">console</span>.log(ming);</span><br><span class="line"> &#125;</span><br><span class="line"> varMing ()</span><br><span class="line"></span><br><span class="line"> －－－－－－－－－－－－－－</span><br><span class="line">小明</span><br></pre></td></tr></table></figure>
+<h2 id="迴圈"><a href="#迴圈" class="headerlink" title="迴圈"></a>迴圈</h2><blockquote>
+<p>範例三</p>
+</blockquote>
+<ul>
+<li><code>var i=0</code> 是全域變數，執行過程會先走完<code>for</code>迴圈後再把<code>i</code>的總數儲存後，在進行<code>setTimeout</code>，所以並不會依序列出。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'這執行第'</span> + i + <span class="string">'次'</span>);</span><br><span class="line">  &#125;, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line">這是執行第<span class="number">10</span>次</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>let i = 0</code> 範圍設在<code>for</code>迴圈內，必然<code>setTimeout</code>能夠跟著迴圈。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'這執行第'</span> + i + <span class="string">'次'</span>);</span><br><span class="line">  &#125;, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line">這是執行第<span class="number">0</span>次</span><br><span class="line">這是執行第<span class="number">1</span>次</span><br><span class="line">這是執行第<span class="number">2</span>次</span><br><span class="line">這是執行第<span class="number">3</span>次</span><br><span class="line">這是執行第<span class="number">4</span>次</span><br><span class="line">這是執行第<span class="number">5</span>次</span><br><span class="line">這是執行第<span class="number">6</span>次</span><br><span class="line">這是執行第<span class="number">7</span>次</span><br><span class="line">這是執行第<span class="number">8</span>次</span><br><span class="line">這是執行第<span class="number">9</span>次</span><br></pre></td></tr></table></figure>
+<h1 id="const"><a href="#const" class="headerlink" title="const"></a>const</h1><blockquote>
+<p><code>const</code> 是宣告一個常數，宣告後的變數不能隨意修改。<br>但是 <code>const</code> 所宣告的如果是物件變數，則物件內的屬性可隨意修改</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ming = <span class="string">'鐵錚錚男子漢'</span>;</span><br><span class="line"></span><br><span class="line">ming = <span class="string">"男子漢"</span>; <span class="comment">// 錯誤，const 宣告變數後，是不能再做更改的。</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>物件本身是傳參考，只修改參考內的值</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> family = &#123;</span><br><span class="line">  mom: <span class="string">'老媽'</span>,</span><br><span class="line">  me: <span class="string">'小明'</span>,</span><br><span class="line">  sister: <span class="string">'小橙'</span></span><br><span class="line">&#125;;</span><br><span class="line">family.father = <span class="string">'爸爸'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(family)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">family=&#123;&#125;; <span class="comment">//錯誤</span></span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">&#123;<span class="attr">mom</span>: <span class="string">"老媽"</span>, <span class="attr">me</span>: <span class="string">"小明"</span>, <span class="attr">sister</span>: <span class="string">"小橙"</span>, <span class="attr">father</span>: <span class="string">"爸爸"</span>&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="展開＆其餘參數"><a href="#展開＆其餘參數" class="headerlink" title="展開＆其餘參數"></a>展開＆其餘參數</h1><h2 id="展開"><a href="#展開" class="headerlink" title="展開"></a>展開</h2><h3 id="合併矩陣"><a href="#合併矩陣" class="headerlink" title="合併矩陣"></a>合併矩陣</h3><blockquote>
+<p>使用展開語法，合併以下陣列</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> groupA = [<span class="string">'小明'</span>, <span class="string">'杰倫'</span>, <span class="string">'阿姨'</span>];</span><br><span class="line"><span class="keyword">let</span> groupB = [<span class="string">'老媽'</span>, <span class="string">'老爸'</span>];</span><br><span class="line"><span class="comment">// let groupAll = groupA.concat(groupB);</span></span><br><span class="line"><span class="keyword">let</span> groupAll = [...groupA, ...groupB];</span><br><span class="line"><span class="built_in">console</span>.log(groupAll);</span><br><span class="line"><span class="built_in">console</span>.log(...groupA);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">(<span class="number">5</span>) [<span class="string">"小明"</span>, <span class="string">"杰倫"</span>, <span class="string">"阿姨"</span>, <span class="string">"老媽"</span>, <span class="string">"老爸"</span>]</span><br><span class="line">小明 杰倫 阿姨</span><br></pre></td></tr></table></figure>
+
+<h3 id="傳參考"><a href="#傳參考" class="headerlink" title="傳參考"></a>傳參考</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> groupA = [<span class="string">'小新'</span>, <span class="string">'風間'</span>, <span class="string">'阿呆'</span>];</span><br><span class="line"><span class="keyword">let</span> groupB = [...groupA]; <span class="comment">//加入 ... 則成為新陣列</span></span><br><span class="line">groupB.push(<span class="string">'妮妮'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(groupA);</span><br><span class="line"><span class="built_in">console</span>.log(groupB);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">(<span class="number">3</span>) [<span class="string">"小新"</span>, <span class="string">"風間"</span>, <span class="string">"阿呆"</span>]</span><br><span class="line">(<span class="number">4</span>) [<span class="string">"小新"</span>, <span class="string">"風間"</span>, <span class="string">"阿呆"</span>, <span class="string">"妮妮"</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="類陣列"><a href="#類陣列" class="headerlink" title="類陣列"></a>類陣列</h3><blockquote>
+<p>讓一個不是陣列形式能夠變成真正的陣列，一樣用展開的方式<code>[...doms]</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> doms = <span class="built_in">document</span>.querySelectorAll(<span class="string">'li'</span>);</span><br><span class="line"><span class="keyword">let</span> newDoms = [...doms];</span><br><span class="line"><span class="built_in">console</span>.log(newDoms,doms);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"><span class="comment">// 成為真正的陣列</span></span><br><span class="line">(<span class="number">6</span>) [li.nav-item, li.nav-item, li.nav-item, li.nav-item, li.nav-item, li] </span><br><span class="line"></span><br><span class="line">NodeList(<span class="number">6</span>) [li.nav-item, li.nav-item, li.nav-item, li.nav-item, li.nav-item, li]</span><br></pre></td></tr></table></figure>
+
+<h2 id="其餘參數"><a href="#其餘參數" class="headerlink" title="其餘參數"></a>其餘參數</h2><blockquote>
+<p>傳入的參數數量不確定時，可以以多餘的參數以陣列的方式呈現</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moreMoney</span>(<span class="params">ming, ...money</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(ming, money);</span><br><span class="line">&#125;</span><br><span class="line">moreMoney(<span class="string">'小明'</span>, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>)</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">小明 (<span class="number">3</span>) [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="解構賦值"><a href="#解構賦值" class="headerlink" title="解構賦值"></a>解構賦值</h1><h2 id="陣列解構"><a href="#陣列解構" class="headerlink" title="陣列解構"></a>陣列解構</h2><h3 id="轉移"><a href="#轉移" class="headerlink" title="轉移"></a>轉移</h3><blockquote>
+<p>類似鏡像轉移，把family的值，一一的賦予到變數上</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> family = [<span class="string">'小明'</span>, <span class="string">'杰倫'</span>, <span class="string">'阿姨'</span>, <span class="string">'老媽'</span>, <span class="string">'老爸'</span>];</span><br><span class="line"><span class="comment">// let ming = family[0];</span></span><br><span class="line"><span class="comment">// let jay = family[1];</span></span><br><span class="line"><span class="comment">// let auntie = family[2];</span></span><br><span class="line"><span class="keyword">let</span> [ming, jay, auntie, mom, papa] = family;</span><br><span class="line"><span class="built_in">console</span>.log(ming, jay, auntie, mom, papa);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">小明 杰倫 阿姨 老媽 老爸</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果兩方變數不對等時</span></span><br><span class="line"><span class="keyword">let</span> family = [<span class="string">'小明'</span>, <span class="string">'杰倫'</span>, <span class="string">'阿姨'</span>, <span class="string">'老媽'</span>, <span class="string">'老爸'</span>];</span><br><span class="line"><span class="keyword">let</span> [ming, jay, auntie] = family;</span><br><span class="line"><span class="built_in">console</span>.log(ming, jay, auntie);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">小明 杰倫 阿姨 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果從中間缺少變數時</span></span><br><span class="line"><span class="keyword">let</span> family = [<span class="string">'小明'</span>, <span class="string">'杰倫'</span>, <span class="string">'阿姨'</span>, <span class="string">'老媽'</span>, <span class="string">'老爸'</span>];</span><br><span class="line"><span class="keyword">let</span> [ming, jay, , mom, papa] = family;</span><br><span class="line"><span class="built_in">console</span>.log(ming, jay, auntie, mom, papa);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">小明 杰倫 老媽 老爸</span><br></pre></td></tr></table></figure>
+
+<h3 id="交換變數"><a href="#交換變數" class="headerlink" title="交換變數"></a>交換變數</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> zing = <span class="string">'小新'</span>;</span><br><span class="line"><span class="keyword">let</span> boy = <span class="string">'正男'</span>;</span><br><span class="line">[zing,boy] = [boy,zing];</span><br><span class="line"><span class="built_in">console</span>.log(zing,boy);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">正男 小新</span><br></pre></td></tr></table></figure>
+
+<h3 id="拆解字元"><a href="#拆解字元" class="headerlink" title="拆解字元"></a>拆解字元</h3><blockquote>
+<p>拆解字元到單一變數上</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'春日部防衛隊'</span>;</span><br><span class="line"><span class="keyword">let</span> [s,d,f,g,h,j] = str;</span><br><span class="line"><span class="built_in">console</span>.log(s,d,f,g,h,j);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">春 日 部 防 衛 隊</span><br></pre></td></tr></table></figure>
+
+<h2 id="物件解構"><a href="#物件解構" class="headerlink" title="物件解構"></a>物件解構</h2><h3 id="賦予新變數"><a href="#賦予新變數" class="headerlink" title="賦予新變數"></a>賦予新變數</h3><blockquote>
+<p>取出其中一個值，並附在新的變數名稱上</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> GinyuTeam = &#123;</span><br><span class="line">  Ginyu: <span class="string">'基紐'</span>,</span><br><span class="line">  Jeice: <span class="string">'吉斯'</span>,</span><br><span class="line">  burter: <span class="string">'巴特'</span>,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">Ginyu</span>: xx&#125; =GinyuTeam;</span><br><span class="line"><span class="built_in">console</span>.log(xx);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">基紐</span><br></pre></td></tr></table></figure>
+
+<h3 id="預設值"><a href="#預設值" class="headerlink" title="預設值"></a>預設值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(一)</span><br><span class="line"><span class="keyword">let</span> [zing = <span class="string">'小新'</span>, yeh = <span class="string">'美芽'</span>] = [<span class="string">'廣志'</span>] </span><br><span class="line"><span class="comment">//第一個會被賦值，第二個會用預設</span></span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">廣志 美芽</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(二)</span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">family</span>: ming = <span class="string">'小明'</span> &#125; = &#123;&#125;</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">小明</span><br></pre></td></tr></table></figure>
+<h1 id="ES6-縮寫"><a href="#ES6-縮寫" class="headerlink" title="ES6 縮寫"></a>ES6 縮寫</h1><h2 id="物件縮寫"><a href="#物件縮寫" class="headerlink" title="物件縮寫"></a>物件縮寫</h2><blockquote>
+<p>直接帶變數名稱進去，使用解構取出陣列值。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> zing = <span class="string">'小新'</span></span><br><span class="line"><span class="keyword">const</span> family = &#123;</span><br><span class="line">  papa: <span class="string">'廣志'</span>,</span><br><span class="line">  mama: <span class="string">'美冴'</span>,</span><br><span class="line">  sister: <span class="string">'小葵'</span>,</span><br><span class="line">  pet: <span class="string">'小白'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> allFamily = &#123;</span><br><span class="line">  zing,</span><br><span class="line">  ...family,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log (allFamily);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">&#123;<span class="attr">zing</span>: <span class="string">"小新"</span>, <span class="attr">papa</span>: <span class="string">"廣志"</span>, <span class="attr">mama</span>: <span class="string">"美冴"</span>, <span class="attr">sister</span>: <span class="string">"小葵"</span>, <span class="attr">pet</span>: <span class="string">"小白"</span>&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Vue.js CLI 常見情境，帶入變數名稱</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//將套件由 './App' 路徑載入，並使用 App 這個變數名稱</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="物件函式縮寫"><a href="#物件函式縮寫" class="headerlink" title="物件函式縮寫"></a>物件函式縮寫</h2><blockquote>
+<p>可以省略 <code>:function</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newTeam = &#123;</span><br><span class="line"></span><br><span class="line">  showPosture () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'我們是 基紐特戰隊'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="避免參考"><a href="#避免參考" class="headerlink" title="避免參考"></a>避免參考</h2><blockquote>
+<p>搭配解構，將以下物件指向賦予到另一個物件上</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Family = &#123;</span><br><span class="line">  papa: &#123;</span><br><span class="line">    name: <span class="string">'廣志'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mama: &#123;</span><br><span class="line">    name: <span class="string">'美冴'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  sister: &#123; </span><br><span class="line">    name: <span class="string">'小葵'</span></span><br><span class="line">  &#125;,  </span><br><span class="line">  pet: &#123; </span><br><span class="line">    name: <span class="string">'小白'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> allFamily = &#123;</span><br><span class="line">  ...Family,</span><br><span class="line">&#125;;</span><br><span class="line">allFamily.zing = <span class="string">'小新'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log (allFamily,Family)</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"><span class="comment">// allFamily 會加上小新</span></span><br><span class="line">papa: &#123;<span class="attr">name</span>: <span class="string">"廣志"</span>&#125;</span><br><span class="line">mama: &#123;<span class="attr">name</span>: <span class="string">"美冴"</span>&#125;</span><br><span class="line">sister: &#123;<span class="attr">name</span>: <span class="string">"小葵"</span>&#125;</span><br><span class="line">pet: &#123;<span class="attr">name</span>: <span class="string">"小白"</span>&#125;</span><br><span class="line">zing: <span class="string">"小新"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Family原始陣列不受影響</span></span><br><span class="line">papa: &#123;<span class="attr">name</span>: <span class="string">"廣志"</span>&#125;</span><br><span class="line">mama: &#123;<span class="attr">name</span>: <span class="string">"美冴"</span>&#125;</span><br><span class="line">sister: &#123;<span class="attr">name</span>: <span class="string">"小葵"</span>&#125;</span><br><span class="line">pet: &#123;<span class="attr">name</span>: <span class="string">"小白"</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="箭頭-amp-傳統函式差異"><a href="#箭頭-amp-傳統函式差異" class="headerlink" title="箭頭&amp;傳統函式差異"></a>箭頭&amp;傳統函式差異</h1><h2 id="改寫傳統函式"><a href="#改寫傳統函式" class="headerlink" title="改寫傳統函式"></a>改寫傳統函式</h2><blockquote>
+<p>將以下改寫成 Arrow Function，並嘗試縮寫形式</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常見形式</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function"><span class="keyword">function</span> (<span class="params">someone</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> someone + <span class="string">'吃飯了'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">'小新'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//縮寫形式 </span></span><br><span class="line"><span class="comment">//省略 function</span></span><br><span class="line"><span class="comment">//省略 括號 大括號（若只有一行程式碼才可省略大括號）</span></span><br><span class="line"><span class="comment">//新增 =&gt;</span></span><br><span class="line"><span class="comment">//省略 return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> callSomeone = <span class="function"><span class="params">someone</span> =&gt;</span> someone + <span class="string">'吃飯了'</span></span><br><span class="line"><span class="built_in">console</span>.log(callSomeone(<span class="string">'小新'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="無參數"><a href="#無參數" class="headerlink" title="無參數"></a>無參數</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> updateEasyCard = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> cash = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line">updateEasyCard(<span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 改寫成箭頭函式，若無參數則會出錯，所以改寫為以下方式(其餘參數)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> updateEasyCard = <span class="function">(<span class="params">...<span class="built_in">arguments</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> cash = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line">updateEasyCard(<span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="this的綁定"><a href="#this的綁定" class="headerlink" title="this的綁定"></a>this的綁定</h2><blockquote>
+<p>傳統函式的 <code>this</code> = 函式呼叫方式</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'全域星人'</span></span><br><span class="line"><span class="keyword">var</span> auntie = &#123;</span><br><span class="line">  name: <span class="string">'貓星人'</span>,</span><br><span class="line">  callName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1'</span>, <span class="keyword">this</span>.name);</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'2'</span>, <span class="keyword">this</span>.name);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'3'</span>, <span class="keyword">this</span>);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">auntie.callName();</span><br><span class="line"><span class="comment">// 1 號的 this 指的是 auntie 內的 callName</span></span><br><span class="line"><span class="comment">// setTimeout 的 this 指的是 window.setTimeout 的 this</span></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"><span class="number">1</span> 貓星人</span><br><span class="line"><span class="number">2</span> 全域星人</span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>箭頭函式一</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'全域星人'</span></span><br><span class="line"><span class="keyword">var</span> auntie = &#123;</span><br><span class="line">  name: <span class="string">'貓星人'</span>,</span><br><span class="line">  callName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1'</span>, <span class="keyword">this</span>.name);</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'2'</span>, <span class="keyword">this</span>.name);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'3'</span>, <span class="keyword">this</span>);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  callName2: <span class="function"><span class="params">()</span> =&gt;</span> &#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1 arrow'</span>, <span class="keyword">this</span>.name);</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'2 arrow'</span>, <span class="keyword">this</span>.name);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'3 arrow'</span>, <span class="keyword">this</span>);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">auntie.callName();</span><br><span class="line">auntie.callName2();</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"><span class="number">1</span> 貓星人</span><br><span class="line"><span class="number">1</span> arrow 全域星人</span><br><span class="line"><span class="number">2</span> 全域星人</span><br><span class="line"><span class="number">3</span> </span><br><span class="line"><span class="number">2</span> arrow 全域星人</span><br><span class="line"><span class="number">3</span> arrow</span><br></pre></td></tr></table></figure>
+<p>建議在<code>Vue</code>裡的<code>methods</code>使用傳統函式並且使用縮寫的方式。</p>
+<blockquote>
+<p>箭頭函式二（讓<code>setTimeout</code>的<code>this</code>指向<code>auntie</code>）</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> auntie = &#123;</span><br><span class="line">  name: <span class="string">'貓星人'</span>,</span><br><span class="line">  callName () &#123; </span><br><span class="line">    <span class="keyword">var</span> vm = <span class="keyword">this</span>;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(vm,vm.name);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">auntie.callName();</span><br></pre></td></tr></table></figure>
+
+<h1 id="Template-String"><a href="#Template-String" class="headerlink" title="Template String"></a>Template String</h1><p>目的是能夠組字串時可以更容易且容易閱讀。</p>
+<h2 id="一般用法"><a href="#一般用法" class="headerlink" title="一般用法"></a>一般用法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    friends: <span class="number">2</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'阿姨'</span>,</span><br><span class="line">    friends: <span class="number">999</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰倫'</span>,</span><br><span class="line">    friends: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> originString = <span class="string">'我叫做 '</span> + people[<span class="number">0</span>].name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> originUl = <span class="string">'&lt;ul&gt;\</span></span><br><span class="line"><span class="string">  &lt;li&gt;我叫做 '</span> + people[<span class="number">0</span>].name + <span class="string">'&lt;/li&gt;\</span></span><br><span class="line"><span class="string">  &lt;li&gt;我叫做 '</span> + people[<span class="number">1</span>].name + <span class="string">'&lt;/li&gt;\</span></span><br><span class="line"><span class="string">  &lt;li&gt;我叫做 '</span> + people[<span class="number">2</span>].name + <span class="string">'&lt;/li&gt;\</span></span><br><span class="line"><span class="string">&lt;/ul&gt;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(originString, originUl);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">我叫做 小明 &lt;ul&gt;  <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>我叫做 小明<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>  <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>我叫做 阿姨<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>  <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>我叫做 杰倫<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>&lt;<span class="regexp">/ul&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="簡化用法"><a href="#簡化用法" class="headerlink" title="簡化用法"></a>簡化用法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> newString = <span class="string">`我叫做 <span class="subst">$&#123;people[<span class="number">0</span>].name&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法一</span></span><br><span class="line"><span class="keyword">let</span> newUl = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;ul&gt;</span></span><br><span class="line"><span class="string">&lt;li&gt;我叫做 <span class="subst">$&#123;people[<span class="number">0</span>].name&#125;</span>&lt;/li&gt;</span></span><br><span class="line"><span class="string">&lt;li&gt;我叫做 <span class="subst">$&#123;people[<span class="number">1</span>].name&#125;</span>&lt;/li&gt;</span></span><br><span class="line"><span class="string">&lt;li&gt;我叫做 <span class="subst">$&#123;people[<span class="number">2</span>].name&#125;</span>&lt;/li&gt;</span></span><br><span class="line"><span class="string">&lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二</span></span><br><span class="line"><span class="comment">// 使用 jQuery 的 map() 做迴圈</span></span><br><span class="line"><span class="comment">// join('') 刪除符號</span></span><br><span class="line"><span class="keyword">let</span> newUl = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;ul&gt;</span></span><br><span class="line"><span class="string"><span class="subst">$&#123;people.map(person =&gt; <span class="string">`&lt;li&gt;我叫做 <span class="subst">$&#123;person.name&#125;</span>&lt;/li&gt;`</span>).join(<span class="string">''</span>)&#125;</span></span></span><br><span class="line"><span class="string">&lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="built_in">console</span>.log(newString,newUl);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//jQuery 加入畫面中</span></span><br><span class="line">$(<span class="string">'#app'</span>).html(newUl);</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line">我叫做 小明 </span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;li&gt;我叫做 小明&lt;<span class="regexp">/li&gt;&lt;li&gt;我叫做 阿姨&lt;/</span>li&gt;<span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>我叫做 杰倫<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/ul&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="陣列方法"><a href="#陣列方法" class="headerlink" title="陣列方法"></a>陣列方法</h1><p>需注意瀏覽器的支援（ex: IE8）</p>
+<h2 id="forEach"><a href="#forEach" class="headerlink" title="forEach( )"></a>forEach( )</h2><blockquote>
+<p>將陣列內的每個元素，皆傳入並執行給定的函式一次</p>
+</blockquote>
+<p>JavaScript 也可以使用這類型的陣列方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 將所有物件增加 icash 金額欄位</span></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    money: <span class="number">500</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">    money: <span class="number">3000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰倫'</span>,</span><br><span class="line">    money: <span class="number">60000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'老媽'</span>,</span><br><span class="line">    money: <span class="literal">Infinity</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">people.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  item.icash = item.money + <span class="number">500</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">－－－－－－－－－－－－－－</span></span><br><span class="line"><span class="regexp">&#123;name: "小明", money: 500, icash: 1000&#125;</span></span><br><span class="line"><span class="regexp">&#123;name: "漂亮阿姨", money: 3000, icash: 3500&#125;</span></span><br><span class="line"><span class="regexp">&#123;name: "杰倫", money: 60000, icash: 60500&#125;</span></span><br><span class="line"><span class="regexp">&#123;name: "老媽", money: Infinity, icash: Infinity&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="map"><a href="#map" class="headerlink" title="map( )"></a>map( )</h2><blockquote>
+<p>會建立一個新的陣列，其內容為原陣列的每一個元素經由回呼函式運算後所回傳的結果之集合。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    money: <span class="number">500</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">    money: <span class="number">3000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰倫'</span>,</span><br><span class="line">    money: <span class="number">60000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'老媽'</span>,</span><br><span class="line">    money: <span class="literal">Infinity</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newpeople = people.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, array</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span>&#123;</span><br><span class="line">    ...item,</span><br><span class="line">    icash: item.money + <span class="number">500</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(newpeople);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">－－－－－－－－－－－－－－</span></span><br><span class="line"><span class="regexp">(4) [&#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;]</span></span><br><span class="line"><span class="regexp">0: &#123;name: "小明", money: 500, icash: 1000&#125;</span></span><br><span class="line"><span class="regexp">1: &#123;name: "漂亮阿姨", money: 3000, icash: 3500&#125;</span></span><br><span class="line"><span class="regexp">2: &#123;name: "杰倫", money: 60000, icash: 60500&#125;</span></span><br><span class="line"><span class="regexp">3: &#123;name: "老媽", money: Infinity, icash: Infinity&#125;</span></span><br><span class="line"><span class="regexp">length: 4</span></span><br><span class="line"><span class="regexp">__proto__: Array(0)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter( )"></a>filter( )</h2><blockquote>
+<p>把所有為 <code>true</code> 值全部回傳，並且回傳為陣列</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    money: <span class="number">500</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">    money: <span class="number">3000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰倫'</span>,</span><br><span class="line">    money: <span class="number">60000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'老媽'</span>,</span><br><span class="line">    money: <span class="literal">Infinity</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterpeople = people.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (item.money &lt; <span class="number">5000</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(filterpeople)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">－－－－－－－－－－－－－－</span></span><br><span class="line"><span class="regexp">0: &#123;name: "小明", money: 500&#125;</span></span><br><span class="line"><span class="regexp">1: &#123;name: "漂亮阿姨", money: 3000&#125;</span></span><br><span class="line"><span class="regexp">length: 2</span></span><br><span class="line"><span class="regexp">__proto__: Array(0)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="find"><a href="#find" class="headerlink" title="find ( )"></a>find ( )</h2><blockquote>
+<p>把 <code>true</code> 值只回傳一次，回傳為本身的值，適用於尋找單一條件的值或 <code>id</code> </p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    money: <span class="number">500</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">    money: <span class="number">3000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰倫'</span>,</span><br><span class="line">    money: <span class="number">60000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'老媽'</span>,</span><br><span class="line">    money: <span class="literal">Infinity</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> filterpeople = people.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (item.money &lt; <span class="number">5000</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(filterpeople)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">－－－－－－－－－－－－－－</span></span><br><span class="line"><span class="regexp">&#123;name: "小明", money: 500&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="every"><a href="#every" class="headerlink" title="every ( )"></a>every ( )</h2><blockquote>
+<p>所以結果都為 <code>true</code> ， <code>return</code> 才會是<code>true</code> </p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    money: <span class="number">500</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">    money: <span class="number">3000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰倫'</span>,</span><br><span class="line">    money: <span class="number">60000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'老媽'</span>,</span><br><span class="line">    money: <span class="literal">Infinity</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">const</span> ans = people.every(<span class="function"><span class="keyword">function</span>(<span class="params">item, i</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.money &gt; <span class="number">10000</span>; </span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ans);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">－－－－－－－－－－－－－－</span></span><br><span class="line"><span class="regexp">false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="some"><a href="#some" class="headerlink" title="some ( )"></a>some ( )</h2><blockquote>
+<p>只要一個結果為 <code>true</code> ， <code>return</code> 就會是<code>true</code> </p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    money: <span class="number">500</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">    money: <span class="number">3000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰倫'</span>,</span><br><span class="line">    money: <span class="number">60000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'老媽'</span>,</span><br><span class="line">    money: <span class="literal">Infinity</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">const</span> ans = people.some(<span class="function"><span class="keyword">function</span>(<span class="params">item, i</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> item.money &gt; <span class="number">10000</span>; </span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(ans);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">－－－－－－－－－－－－－－</span></span><br><span class="line"><span class="regexp">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="reduce"><a href="#reduce" class="headerlink" title="reduce ( )"></a>reduce ( )</h2><blockquote>
+<p>用來累積回呼函式回傳值的累加器，累加器是上一次呼叫後，所回傳的累加數值。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    money: <span class="number">500</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">    money: <span class="number">3000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰倫'</span>,</span><br><span class="line">    money: <span class="number">60000</span></span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 數值累加</span></span><br><span class="line"><span class="keyword">const</span> newNumber = people.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, item, index</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(prev)</span><br><span class="line">  <span class="keyword">return</span> prev + item.money</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newNumber)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 比大小，抓出最大值</span></span><br><span class="line"><span class="keyword">const</span> newNumber2 = people.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev, item, index</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(prev)</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max (prev , item.money)</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'newNumber2'</span>,newNumber2)</span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">－－－－－－－－－－－－－－</span><br><span class="line"><span class="comment">// 數值累加</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">500</span></span><br><span class="line"><span class="number">3500</span></span><br><span class="line"><span class="number">63500</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 比大小，抓出最大值</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">500</span></span><br><span class="line"><span class="number">3000</span></span><br><span class="line">newNumber2 <span class="number">60000</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a href="https://cn.vuejs.org/v2/guide/installation.html" target="_blank" rel="noopener">Vue.js 官方中文</a><br><a href="https://www.runoob.com/vue2/vue-tutorial.html" target="_blank" rel="noopener">菜鳥教程</a><br><a href="https://www.hexschool.com/courses/" target="_blank" rel="noopener">六角學院-Vue出一個電商網站</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">MDN Web Docs</a></p>
+<p><strong>&lt;——-學習筆記，若有錯誤請務必指教——-&gt;</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/SasaChing.github.io/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/SasaChing.github.io/2020/05/15/Vuejs-3/" rel="next" title="[Vue.js 筆記 (三) 元件]">
+                <i class="fa fa-chevron-left"></i> [Vue.js 筆記 (三) 元件]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/SasaChing.github.io/images/%E5%80%8B%E4%BA%BA%E7%85%A7%E7%89%87.jpg"
+                alt="Sabrina" />
+            
+              <p class="site-author-name" itemprop="name">Sabrina</p>
+              <p class="site-description motion-element" itemprop="description">學習＆練習&耍廢</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/SasaChing.github.io/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/SasaChing.github.io/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/SasaChing.github.io/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/SasaChing" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jean66536028@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/sabrinahuang0917" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#let-amp-var"><span class="nav-number">1.</span> <span class="nav-text">let &amp; var</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比較-var-＆-let"><span class="nav-number">1.1.</span> <span class="nav-text">比較 var ＆ let</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.2.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迴圈"><span class="nav-number">1.3.</span> <span class="nav-text">迴圈</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#const"><span class="nav-number">2.</span> <span class="nav-text">const</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#展開＆其餘參數"><span class="nav-number">3.</span> <span class="nav-text">展開＆其餘參數</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#展開"><span class="nav-number">3.1.</span> <span class="nav-text">展開</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#合併矩陣"><span class="nav-number">3.1.1.</span> <span class="nav-text">合併矩陣</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#傳參考"><span class="nav-number">3.1.2.</span> <span class="nav-text">傳參考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#類陣列"><span class="nav-number">3.1.3.</span> <span class="nav-text">類陣列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其餘參數"><span class="nav-number">3.2.</span> <span class="nav-text">其餘參數</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解構賦值"><span class="nav-number">4.</span> <span class="nav-text">解構賦值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#陣列解構"><span class="nav-number">4.1.</span> <span class="nav-text">陣列解構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轉移"><span class="nav-number">4.1.1.</span> <span class="nav-text">轉移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交換變數"><span class="nav-number">4.1.2.</span> <span class="nav-text">交換變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拆解字元"><span class="nav-number">4.1.3.</span> <span class="nav-text">拆解字元</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件解構"><span class="nav-number">4.2.</span> <span class="nav-text">物件解構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#賦予新變數"><span class="nav-number">4.2.1.</span> <span class="nav-text">賦予新變數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#預設值"><span class="nav-number">4.2.2.</span> <span class="nav-text">預設值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ES6-縮寫"><span class="nav-number">5.</span> <span class="nav-text">ES6 縮寫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#物件縮寫"><span class="nav-number">5.1.</span> <span class="nav-text">物件縮寫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件函式縮寫"><span class="nav-number">5.2.</span> <span class="nav-text">物件函式縮寫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免參考"><span class="nav-number">5.3.</span> <span class="nav-text">避免參考</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#箭頭-amp-傳統函式差異"><span class="nav-number">6.</span> <span class="nav-text">箭頭&amp;傳統函式差異</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#改寫傳統函式"><span class="nav-number">6.1.</span> <span class="nav-text">改寫傳統函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#無參數"><span class="nav-number">6.2.</span> <span class="nav-text">無參數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this的綁定"><span class="nav-number">6.3.</span> <span class="nav-text">this的綁定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Template-String"><span class="nav-number">7.</span> <span class="nav-text">Template String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般用法"><span class="nav-number">7.1.</span> <span class="nav-text">一般用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#簡化用法"><span class="nav-number">7.2.</span> <span class="nav-text">簡化用法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#陣列方法"><span class="nav-number">8.</span> <span class="nav-text">陣列方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#forEach"><span class="nav-number">8.1.</span> <span class="nav-text">forEach( )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map"><span class="nav-number">8.2.</span> <span class="nav-text">map( )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter"><span class="nav-number">8.3.</span> <span class="nav-text">filter( )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">8.4.</span> <span class="nav-text">find ( )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#every"><span class="nav-number">8.5.</span> <span class="nav-text">every ( )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some"><span class="nav-number">8.6.</span> <span class="nav-text">some ( )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce"><span class="nav-number">8.7.</span> <span class="nav-text">reduce ( )</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考"><span class="nav-number">9.</span> <span class="nav-text">參考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sabrina - 轉載文章請附上作者及原文連結</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/SasaChing.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://sabrinas-blog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://sasaching.github.io/2020/05/15/Vuejs-4/';
+          this.page.identifier = '2020/05/15/Vuejs-4/';
+          this.page.title = '[Vue.js 筆記 (四) ES6]';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://sabrinas-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
