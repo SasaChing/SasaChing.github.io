@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/SasaChing.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/SasaChing.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/SasaChing.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/SasaChing.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/SasaChing.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/SasaChing.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/SasaChing.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue.js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="set( ) 常常會無法預先把資料結構定義的非常的完整，尤其是 AJAX 所找回的資料無法預先定義，就可以使用 set() 寫入資料  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Vue.js 筆記 (五) Vue.js常用API]">
+<meta property="og:url" content="https://sasaching.github.io/2020/06/17/Vuejs-5/index.html">
+<meta property="og:site_name" content="Sabrina&#39;s Blog">
+<meta property="og:description" content="set( ) 常常會無法預先把資料結構定義的非常的完整，尤其是 AJAX 所找回的資料無法預先定義，就可以使用 set() 寫入資料  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-06-17T08:28:20.179Z">
+<meta property="article:modified_time" content="2020-07-01T03:48:37.069Z">
+<meta property="article:author" content="Sabrina">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/SasaChing.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://SasaChing.github.io/2020/06/17/Vuejs-5/"/>
+
+
+
+
+
+  <title>[Vue.js 筆記 (五) Vue.js常用API] | Sabrina's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/SasaChing.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sabrina's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Code notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/SasaChing.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/SasaChing.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/SasaChing.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/SasaChing.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/SasaChing.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://SasaChing.github.io/SasaChing.github.io/2020/06/17/Vuejs-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sabrina">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/SasaChing.github.io/images/%E5%80%8B%E4%BA%BA%E7%85%A7%E7%89%87.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sabrina's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Vue.js 筆記 (五) Vue.js常用API]</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-17T16:28:20+08:00">
+                2020-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/SasaChing.github.io/categories/Vue-js%E7%AD%86%E8%A8%98/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue.js筆記</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/SasaChing.github.io/2020/06/17/Vuejs-5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/06/17/Vuejs-5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="set"><a href="#set" class="headerlink" title="set( )"></a>set( )</h1><blockquote>
+<p>常常會無法預先把資料結構定義的非常的完整，尤其是 AJAX 所找回的資料無法預先定義，就可以使用 <code>set()</code> 寫入資料</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;table <span class="class"><span class="keyword">class</span></span>=<span class="string">"table"</span>&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">      &lt;tr is=<span class="string">"row-component"</span> v-<span class="keyword">for</span>=<span class="string">"(item, key) in data"</span> :item=<span class="string">"item"</span> :key=<span class="string">"key"</span>&gt;&lt;<span class="regexp">/tr&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>tbody&gt;</span><br><span class="line">  &lt;<span class="regexp">/table&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/x-template"</span> id=<span class="string">"row-component"</span>&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123; item.name &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">    &lt;td&gt;&#123;&#123; item.cash &#125;&#125;&lt;/</span>td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123; item.icash &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">    &lt;td&gt;</span></span><br><span class="line"><span class="regexp">      &lt;span v-if="data.item"&gt;&#123;&#123; data.item.name &#125;&#125;&lt;/</span>span&gt;</span><br><span class="line">      &lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-sm btn-primary"</span> @click=<span class="string">"addData()"</span>&gt;寫入資料&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>td&gt;</span><br><span class="line">  &lt;<span class="regexp">/tr&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> child = &#123;</span><br><span class="line">  props: [<span class="string">'item'</span>],</span><br><span class="line">  template: <span class="string">'#row-component'</span>,</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      data: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line"><span class="comment">// Vue.set( target, key, value )</span></span><br><span class="line"><span class="comment">// target : 可以是對象或數組</span></span><br><span class="line"><span class="comment">// key : 可以是字符串或數字</span></span><br><span class="line"><span class="comment">// value : 可以是任何類型</span></span><br><span class="line"></span><br><span class="line">  methods: &#123;</span><br><span class="line">    addData: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.$<span class="keyword">set</span>(this.data, 'item', &#123;</span><br><span class="line">        name: <span class="keyword">this</span>.item.name</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Component:'</span>, <span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    data: [</span><br><span class="line">      &#123;</span><br><span class="line">        name: <span class="string">'小新'</span>,</span><br><span class="line">        cash: <span class="number">100</span>,</span><br><span class="line">        icash: <span class="number">500</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        name: <span class="string">'風間'</span>,</span><br><span class="line">        cash: <span class="number">10000</span>,</span><br><span class="line">        icash: <span class="number">5000</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">"row-component"</span>: child</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Vue init:'</span>, <span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="Extend"><a href="#Extend" class="headerlink" title="Extend( )"></a>Extend( )</h1><blockquote>
+<p>可以將多個元件或者對象內相同的內容集中至 <code>Extend()</code> 內作為基底，之後需要用到其內容時，可以直接調出使用</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 兩個元件</span></span><br><span class="line">&lt;script type=<span class="string">"text/x-template"</span> id=<span class="string">"row-component"</span>&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123; item.name &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">    &lt;td&gt;&#123;&#123; item.cash | currency | dollarSign &#125;&#125;&lt;/</span>td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123; item.icash | currency | dollarSign &#125;&#125;&lt;<span class="regexp">/td&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>tr&gt;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>x-template<span class="string">" id="</span>row-component-two<span class="string">"&gt;</span></span><br><span class="line"><span class="string">  &lt;tr class="</span>bg-primary text-white<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;td&gt;&#123;&#123; item.name &#125;&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">    &lt;td&gt;&#123;&#123; item.cash | currency | dollarSign &#125;&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">    &lt;td&gt;&#123;&#123; item.icash | currency | dollarSign &#125;&#125;&lt;/td&gt;</span></span><br><span class="line"><span class="string">  &lt;/tr&gt;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 把兩個元件相同的部分放入 extend()</span></span><br><span class="line"><span class="string">var newExtend = Vue.extend(&#123;</span></span><br><span class="line"><span class="string">  data: function() &#123;</span></span><br><span class="line"><span class="string">    return &#123;</span></span><br><span class="line"><span class="string">      data: &#123;&#125;,</span></span><br><span class="line"><span class="string">      extendData: '這段文字是 extend 得到'</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  template: '#row-component',</span></span><br><span class="line"><span class="string">  filters: &#123;</span></span><br><span class="line"><span class="string">    dollarSign: function (n) &#123;</span></span><br><span class="line"><span class="string">      return `$ $&#123;n&#125;`</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    currency: function(n) &#123;</span></span><br><span class="line"><span class="string">      return n.toFixed(2).replace(/./g, function(c, i, a) &#123;</span></span><br><span class="line"><span class="string">          return i &amp;&amp; c !== "</span>.<span class="string">" &amp;&amp; ((a.length - i) % 3 === 0) ? ',' + c : c;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  mounted: function() &#123;</span></span><br><span class="line"><span class="string">    console.log('Extend:', this)</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">var childOne = &#123;</span></span><br><span class="line"><span class="string">  props: ['item'],</span></span><br><span class="line"><span class="string">  extends: newExtend,</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">//可新增內容或著修改</span></span><br><span class="line"><span class="string">var childTwo = &#123;</span></span><br><span class="line"><span class="string">  props: ['item'],</span></span><br><span class="line"><span class="string">  data: function()&#123;</span></span><br><span class="line"><span class="string">    return &#123;childTwo: '元件2',extendData: '這段文字是 元件2 得到'&#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  template: '#row-component-two',</span></span><br><span class="line"><span class="string">  extends: newExtend,</span></span><br><span class="line"><span class="string">  mounted: function()&#123;</span></span><br><span class="line"><span class="string">    console.log('childTwo')</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>當我使用在 <code>childTwo</code> 使用 <code>extend()</code> 之後，一樣可以新增各個物件或是更改文字等，這樣也都不會變動到原本 <code>extend()</code> 的內容，並且直接在 <code>childTwo</code> 進行覆蓋內容。</li>
+</ul>
+<h1 id="filter"><a href="#filter" class="headerlink" title="filter( )"></a>filter( )</h1><blockquote>
+<p>自訂畫面資料呈現格式</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &#123;&#123; data[<span class="number">0</span>].cash | currency  | dollarSign  &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">var app = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    data: [</span></span><br><span class="line"><span class="regexp">      &#123;</span></span><br><span class="line"><span class="regexp">        name: '小明',</span></span><br><span class="line"><span class="regexp">        cash: 10000,</span></span><br><span class="line"><span class="regexp">        icash: 100,</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">&lt;/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">Vue.filter('currency',function(n)&#123;</span></span><br><span class="line"><span class="regexp">  return n.toFixed(2).replace(/./g, function(c, i, a) &#123;</span></span><br><span class="line"><span class="regexp">    return i &amp;&amp; c !== "." &amp;&amp; ((a.length - i) % 3 === 0) ? ',' + c : c;</span></span><br><span class="line"><span class="regexp">  &#125;);</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">Vue.filter('dollarSign',function(n)&#123;</span></span><br><span class="line"><span class="regexp">  return `$ $&#123;n&#125;`</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp">&lt;/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">－－－－－－－－－－－－－－</span></span><br><span class="line"><span class="regexp">$ 10,000.00</span></span><br></pre></td></tr></table></figure>
+<h1 id="mixin"><a href="#mixin" class="headerlink" title="mixin( )"></a>mixin( )</h1><blockquote>
+<p><code>mixin()</code> 簡單來說一些常用的組件可以放入 <code>mixin()</code> 裡方便調用，也不需要用到相同組件時重複編寫，混入多個元件也能進行全域註冊，在需要該功能時再「混入」，而且不會使類的關係變得複雜，並且 <code>mixin()</code> 對象可以包含任何組件選項(<code>生命週期</code>、<code>data</code>、<code>computed</code>、<code>methods</code>…等)</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mixinFilter = &#123;</span><br><span class="line">  template: <span class="string">'#row-component'</span>,</span><br><span class="line">  filters: &#123;</span><br><span class="line">    dollarSign: <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">`$ <span class="subst">$&#123;n&#125;</span>`</span></span><br><span class="line">    &#125;,</span><br><span class="line">    currency: <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> n.toFixed(<span class="number">2</span>).replace(<span class="regexp">/./g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">c, i, a</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> i &amp;&amp; c !== <span class="string">"."</span> &amp;&amp; ((a.length - i) % <span class="number">3</span> === <span class="number">0</span>) ? <span class="string">','</span> + c : c;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Vue.component(<span class="string">'row-component'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'item'</span>],</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      data: &#123;&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mixins: [mixinFilter],</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'這段是 Mixin 產生'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="mixin-vs-extend"><a href="#mixin-vs-extend" class="headerlink" title="mixin( ) vs. extend( )"></a>mixin( ) vs. extend( )</h1><ul>
+<li><p><code>mixin()</code>能夠加入多個組件，對象可以包含任何組件選項(<code>生命週期</code>、<code>data</code>、<code>computed</code>、<code>methods</code>…等)，但必須注意的<code>mixin()</code>是在存在於全域註冊，它會影響每個單獨創建的 Vue 實例。</p>
+</li>
+<li><p><code>extend()</code>是只能擴展一個元件去做延伸，而且必須是函數。</p>
+</li>
+</ul>
+<h1 id="自定義指令-directives"><a href="#自定義指令-directives" class="headerlink" title="自定義指令(directives)"></a>自定義指令(directives)</h1><ul>
+<li>鉤子函數：鉤子（Hook）是 Windows 消息處理機制的一個很重要的内容，應用程序可以通過鉤子機制截獲處理 Window 消息或是其他一些特定事件。<br><a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank" rel="noopener">Vue.js 官方文件 - 鉤子函數</a></li>
+</ul>
+<blockquote>
+<p>範例 - 製作 Email 驗證功能</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"email"</span> v-model=<span class="string">"email"</span> v-focus v-validator=<span class="string">"&#123; className: 'form-control' &#125;"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">Vue.directive('focus', &#123;</span></span><br><span class="line"><span class="regexp">  inserted: function(el) &#123;</span></span><br><span class="line"><span class="regexp">    el.focus()</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">Vue.directive('validator', &#123;</span></span><br><span class="line"><span class="regexp">  update: function(el, binding, vnode) &#123;</span></span><br><span class="line"><span class="regexp">    console.log('update', el.value, el.className, vnode);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 尋找當前的 model 名稱</span></span><br><span class="line"><span class="regexp">    var currentModel = vnode.data.directives.find(function(o) &#123;</span></span><br><span class="line"><span class="regexp">        return o.name === 'model';</span></span><br><span class="line"><span class="regexp">    &#125;).expression;</span></span><br><span class="line"><span class="regexp">    </span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 從當前 Model 取值</span></span><br><span class="line"><span class="regexp">    var value = vnode.context[currentModel];</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ Email validate</span></span><br><span class="line"><span class="regexp">    var re = /</span>^(([^<span class="xml"><span class="tag">&lt;&gt;</span>()\[\]\.,;:\s@\"]+(\.[^<span class="tag">&lt;&gt;</span>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<span class="tag">&lt;&gt;</span>()[\]\.,;:\s@\"]+\.)+[^<span class="tag">&lt;&gt;</span>()[\]\.,;:\s@\"]&#123;2,&#125;)$/i;</span></span><br><span class="line"><span class="xml">    if (!re.test(value)) &#123;</span></span><br><span class="line"><span class="xml">      el.className = 'form-control is-invalid'</span></span><br><span class="line"><span class="xml">    &#125; else &#123;</span></span><br><span class="line"><span class="xml">      el.className = 'form-control is-valid'</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  bind: function(el, binding, vnode) &#123;</span></span><br><span class="line"><span class="xml">    console.log('bind', el, binding, vnode);</span></span><br><span class="line"><span class="xml">    el.className = binding.value.className</span></span><br><span class="line"></span><br><span class="line"><span class="xml">    var currentModel = vnode.data.directives.find(function(o) &#123;</span></span><br><span class="line"><span class="xml">        return o.name === 'model';</span></span><br><span class="line"><span class="xml">    &#125;).expression;</span></span><br><span class="line"><span class="xml">    var value = vnode.context[currentModel];</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="xml">var app = new Vue(&#123;</span></span><br><span class="line"><span class="xml">  el: '#app',</span></span><br><span class="line"><span class="xml">  data: &#123;</span></span><br><span class="line"><span class="xml">    email: 'abc',</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  mounted: function() &#123;</span></span><br><span class="line"><span class="xml">    console.log('Vue init:', this)</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;);</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><p><a href="https://ithelp.ithome.com.tw/articles/10221028?sc=rss.qu" target="_blank" rel="noopener">Day26 vue.js - 使用mixin將多個組件混入</a><br><a href="https://www.cnblogs.com/xwj-pandababy/articles/3464604.html" target="_blank" rel="noopener">hook函数教程（一）什么是钩子</a><br><a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank" rel="noopener">Vue.js 官方文件 - 鉤子函數</a></p>
+<p><strong>&lt;——-學習筆記，若有錯誤請務必指教——-&gt;</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/SasaChing.github.io/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/SasaChing.github.io/2020/05/15/Vuejs-4/" rel="next" title="[Vue.js 筆記 (四) ES6]">
+                <i class="fa fa-chevron-left"></i> [Vue.js 筆記 (四) ES6]
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/SasaChing.github.io/images/%E5%80%8B%E4%BA%BA%E7%85%A7%E7%89%87.jpg"
+                alt="Sabrina" />
+            
+              <p class="site-author-name" itemprop="name">Sabrina</p>
+              <p class="site-description motion-element" itemprop="description">學習＆練習&耍廢</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/SasaChing.github.io/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/SasaChing.github.io/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/SasaChing.github.io/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/SasaChing" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jean66536028@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/sabrinahuang0917" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#set"><span class="nav-number">1.</span> <span class="nav-text">set( )</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Extend"><span class="nav-number">2.</span> <span class="nav-text">Extend( )</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#filter"><span class="nav-number">3.</span> <span class="nav-text">filter( )</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mixin"><span class="nav-number">4.</span> <span class="nav-text">mixin( )</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mixin-vs-extend"><span class="nav-number">5.</span> <span class="nav-text">mixin( ) vs. extend( )</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定義指令-directives"><span class="nav-number">6.</span> <span class="nav-text">自定義指令(directives)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#參考"><span class="nav-number">7.</span> <span class="nav-text">參考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sabrina - 轉載文章請附上作者及原文連結</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/SasaChing.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/SasaChing.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/SasaChing.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://sabrinas-blog.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://sasaching.github.io/2020/06/17/Vuejs-5/';
+          this.page.identifier = '2020/06/17/Vuejs-5/';
+          this.page.title = '[Vue.js 筆記 (五) Vue.js常用API]';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://sabrinas-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
